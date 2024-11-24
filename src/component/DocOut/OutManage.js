@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import OutManageList from "./OutManageList";
 import {Button, Row, Col, Card, Dropdown, Form, Modal, Table} from "react-bootstrap";
 import ModalAddOut from "../modals/ModalAddOut";
-import ModalSend from "../modals/ModalSend";
+import ModalSendOut from "../modals/ModalSendOut";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
 import {BsFillSendArrowUpFill} from "react-icons/bs";

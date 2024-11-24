@@ -3,29 +3,16 @@ import * as webApi from "../WebApi";
 import {Button} from "react-bootstrap";
 import ModalRevoke from "../modals/ModalRevoke";
 
-export default function OutSendList() {
-  // 設定state
-  const [data, setData] = useState([]); //用來動態設定資料
-  // 載入時，從後端取得資料
-  const path = `letter-out/?status=0&ordering=group_name`;
-  useEffect(() => {
-    webApi.getList(path)
-      .then(response => {
-        setData(response.data.results);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+export default function OutSendList({data}) {
 
   return (
-    data.map((item) => {
+    data.map((obj) => {
       return (
-        <tr key={item.id}>
-          <th scope="row" className='text-center'>{item.number}</th>
-          <td className='text-center'>{item.group_name}</td>
-          <td>{item.title}</td>
-          <td></td>
+        <tr key={obj.id} className='p-2'>
+          <th scope="row" className='text-center p-2'>{obj.number}</th>
+          <td className='text-center p-2'>{obj.groupName}</td>
+          <td className='p-2'>{obj.title}</td>
+          <td className='p-2'></td>
         </tr>
       )
     })

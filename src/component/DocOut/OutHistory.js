@@ -1,37 +1,56 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
 import OutManageList from "./OutManageList";
 import {Button, Row, Col, Card, Dropdown, Form} from "react-bootstrap";
 import ModalAddOut from "../modals/ModalAddOut";
 import OutHistoryList from "./OutHistoryList";
+import {MDBBtn} from "mdb-react-ui-kit";
+import {IoArrowBackOutline} from "react-icons/io5";
+import {IoMdPrint} from "react-icons/io";
+import {rootIP} from "../../info";
+import {MdOutlineHistory} from "react-icons/md";
+import ModalSelectDate from "../modals/ModalSelectDate";
 
 
 export default function OutHistory() {
 
-  //設定state
-  // const [isModalShow, setIsModalShow] = useState(false)
+  const [data, setData] = useState([]);
+    const [params, setParams]
+    = useState({status:0,ordering:'-number'}); //傳給API的參數
+
+    useEffect(() => {
+    axios({
+      method: 'GET',
+      url: rootIP + '/doc/out/',
+      params:params,
+    })
+      .then(res => {
+        setData(res.data.results);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
 
   return (
     <>
       <Row>
-        <Col xs='12' className='mb-3'>
-          <Button variant='secondary me-3' onClick={() => window.history.back()}>
-            <i className="bi bi-arrow-left me-1"></i>
+        <Col xs='12' className='mb-3 d-flex'>
+          <MDBBtn color='secondary' size='sm' className='d-flex' onClick={() => window.history.back()}>
+            <IoArrowBackOutline className='me-1 my-auto'/>
             返回
-          </Button>
-          <Button variant='success' onClick={() => window.history.back()}>
-            <i className="bi bi-printer me-1"></i>
-            列印歷史送文簿
-          </Button>
+          </MDBBtn>
+          <ModalSelectDate/>
         </Col>
         <Col xs='12'>
           <Card className='p-0 shadow-lg rounded-3'>
             <Card.Header className='d-flex'>
-              <h2 className="fw-bolder text-primary m-0">
-                <i className="bi-send-plus-fill me-2"></i>
+              <MdOutlineHistory className='i-20 me-1 my-auto' color='#3B71CA'/>
+              <h3 className="fw-bolder text-primary m-0">
                 送文紀錄
-              </h2>
+              </h3>
               <div className="ms-auto d-flex">
                 <Form method='get' className='my-auto'>
                   <Form.Control type='text' placeholder='關鍵字搜尋'></Form.Control>
@@ -63,7 +82,7 @@ export default function OutHistory() {
                 </tr>
                 </thead>
                 <tbody>
-                <OutHistoryList/>
+                <OutHistoryList data={data}/>
                 </tbody>
               </table>
             </Card.Body>

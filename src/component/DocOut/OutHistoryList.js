@@ -13,48 +13,21 @@ function GetStatus(status){
   }
 }
 
-export default function OutHistoryList(){
-
-  // 將排序方式的值傳給後端
-  let orderBy = new URLSearchParams(window.location.search).get('ordering')
-  if (!orderBy) {
-    orderBy = 'number'
-  }
-  //將搜尋的值傳給後端
-  let searchKey = new URLSearchParams(window.location.search).get('search')
-  if (!searchKey) {
-    searchKey = ''
-  }
-  // 設定state
-  const [data, setData] = useState([]); //用來動態設定資料
-  // 載入時，從後端取得資料
-  const path = `letter-out/?ordering=${orderBy}&search=${searchKey}`;
-  useEffect(() => {
-    webApi.getList(path)
-      .then(response => {
-        setData(response.data.results);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
+export default function OutHistoryList({data}){
 
   return (
-    data.map((item) => {
+    data.map((obj) => {
       return (
-        <tr key={item.id}>
-          <th scope="row">{item.number}</th>
-          <td>{item.group_name}</td>
-          <td>{item.title}</td>
-          <td>{item.username}</td>
-          <td>{item.report_date}</td>
-          <td>{item.send_date}</td>
-          <td>{GetStatus(item.status)}</td>
+        <tr key={obj.id}>
+          <th scope="row">{obj.number}</th>
+          <td>{obj.groupName}</td>
+          <td>{obj.title}</td>
+          <td>{obj.username}</td>
+          <td>{obj.reportDate}</td>
+          <td>{obj.sendDate}</td>
+          <td>{obj.status_display}</td>
         </tr>
       )
     })
   )
-
-
 }
