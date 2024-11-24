@@ -1,14 +1,14 @@
 import {createBrowserRouter, Navigate, Outlet} from "react-router-dom";
 import Home from "./component/pages/Home";
-import LetterOut from "./component/LetterOut/LetterOut";
+import OutManage from "./component/DocOut/OutManage";
 // import LetterIn from "./component/LetterIn";
 import ErrorPage from "./component/ErrorPage";
-import LetterOutHistory from "./component/LetterOut/LetterOutHistory";
-import LetterSend from "./component/LetterOut/LetterSend";
+import OutHistory from "./component/DocOut/OutHistory";
+import OutSend from "./component/DocOut/OutSend";
 import FormTestPage from "./component/FormTestPage";
 import Base from "./component/pages/Base";
 
-// import LetterOutHistory from "./component/LetterOutHistory";
+// import OutHistory from "./component/OutHistory";
 
 const routes = createBrowserRouter([
   {
@@ -22,20 +22,20 @@ const routes = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <LetterOut/>
+        element: <OutManage/>
       },
       {
         path: 'history',
-        element: <LetterOutHistory/>
+        element: <OutHistory/>
       },
       {path: 'send',
-        element: <LetterSend/>
+        element: <OutSend/>
       }
     ]
   },
   // {
   //   path: '/letter-out/send',
-  //   element: <Layout main={<LetterSend/>}/>
+  //   element: <Layout main={<OutSend/>}/>
   // },
   // {
   //   path: '/test',
@@ -48,11 +48,11 @@ const routes = createBrowserRouter([
   //   children: [
   //     {
   //       path: 'out',
-  //       element: <Layout main={<LetterOut/>}/>,
+  //       element: <Layout main={<DocOut/>}/>,
   //       children:[
   //         {
   //           path:'history',
-  //           element:<Layout main={<LetterOutHistory/>}/>
+  //           element:<Layout main={<OutHistory/>}/>
   //         }
   //       ]
   //     },
@@ -62,7 +62,7 @@ const routes = createBrowserRouter([
   //     },
   //           {
   //       path: 'out_history',
-  //       element: <Layout main={<LetterOutHistory/>}/>
+  //       element: <Layout main={<OutHistory/>}/>
   //     }
   //   ]
   // }

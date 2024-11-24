@@ -1,38 +1,105 @@
-.App {
-  text-align: center;
+/*.App {*/
+/*  text-align: center;*/
+/*}*/
+
+/*.App-logo {*/
+/*  height: 40vmin;*/
+/*  pointer-events: none;*/
+/*}*/
+
+/*@media (prefers-reduced-motion: no-preference) {*/
+/*  .App-logo {*/
+/*    animation: App-logo-spin infinite 20s linear;*/
+/*  }*/
+/*}*/
+
+/*.App-header {*/
+/*  background-color: #282c34;*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  font-size: calc(10px + 2vmin);*/
+/*  color: white;*/
+/*}*/
+
+/*.App-link {*/
+/*  color: #61dafb;*/
+/*}*/
+
+/*@keyframes App-logo-spin {*/
+/*  from {*/
+/*    transform: rotate(0deg);*/
+/*  }*/
+/*  to {*/
+/*    transform: rotate(360deg);*/
+/*  }*/
+/*}*/
+
+/*字體大小*/
+.f-05 {
+  font-size: 0.5em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.f-07 {
+  font-size: 0.75em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.f-09 {
+  font-size: 0.9em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.f-10 {
+  font-size: 1em;
 }
 
-.App-link {
-  color: #61dafb;
+.f-12 {
+  font-size: 1.25em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.f-15 {
+  font-size: 1.5em;
 }
+
+.f-20 {
+  font-size: 2em;
+}
+
+
+/* 圖標大小 */
+.i-05 {
+  height: 0.5em;
+  width: 0.5em;
+}
+
+.i-07 {
+  height: 0.75em;
+  width: 0.75em;
+}
+
+.i-10 {
+  height: 1em;
+  width: 1em;
+}
+
+.i-11 {
+  height: 1.1em;
+  width: 1.1em;
+}
+
+.i-12 {
+  height: 1.25em;
+  width: 1.25em;
+}
+
+.i-15 {
+  height: 1.5em;
+  width: 1.5em;
+}
+
+.i-20 {
+  height: 2em;
+  width: 2em;
+}
+

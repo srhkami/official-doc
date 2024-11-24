@@ -13,7 +13,7 @@ function GetStatus(status){
   }
 }
 
-export default function LetterOutHistoryList(){
+export default function OutHistoryList(){
 
   // 將排序方式的值傳給後端
   let orderBy = new URLSearchParams(window.location.search).get('ordering')

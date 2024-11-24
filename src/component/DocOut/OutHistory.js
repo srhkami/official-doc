@@ -1,46 +1,36 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import LetterOutList from "./LetterOutList";
-import {Button, Row, Col, Card, Dropdown, Form, Modal, Table} from "react-bootstrap";
-import ModalAddForm from "../modals/ModalAddForm";
-import ModalSend from "../modals/ModalSend";
+import axios from "axios";
+import OutManageList from "./OutManageList";
+import {Button, Row, Col, Card, Dropdown, Form} from "react-bootstrap";
+import ModalAddOut from "../modals/ModalAddOut";
+import OutHistoryList from "./OutHistoryList";
 
 
-export default function LetterOut() {
+export default function OutHistory() {
 
   //設定state
-  const [showModalAdd, setShowModalAdd] = useState(false)
-
+  // const [isModalShow, setIsModalShow] = useState(false)
 
   return (
     <>
       <Row>
-        <Col xs='12' className='mb-3 d-flex'>
-          <Button as='button' variant='primary' className='ms-2 my-auto' onClick={() => setShowModalAdd(true)}>
-            <i className="bi-file-earmark-plus me-1"></i>
-            新增
+        <Col xs='12' className='mb-3'>
+          <Button variant='secondary me-3' onClick={() => window.history.back()}>
+            <i className="bi bi-arrow-left me-1"></i>
+            返回
           </Button>
-          {showModalAdd && <ModalAddForm isShow={showModalAdd}
-                                        onHide={() => setShowModalAdd(false)}/>}
-          {/*<Button as='button' variant='success' className='ms-3 my-auto' onClick={()=> setShowModalSend(true)}>*/}
-          {/*  <i className="bi-send-plus me-1"></i>*/}
-          {/*  送出公文*/}
-          {/*</Button>*/}
-
-
-          <Link to='send' className="btn btn-success ms-3 my-auto">
-            <i className="bi-send-plus me-1"></i>
-            送出公文</Link>
-          <Link to='history' className="btn btn-secondary ms-auto my-auto"><i
-            className="bi-clock-history me-1"></i>
-            查閱歷史記錄</Link>
+          <Button variant='success' onClick={() => window.history.back()}>
+            <i className="bi bi-printer me-1"></i>
+            列印歷史送文簿
+          </Button>
         </Col>
         <Col xs='12'>
           <Card className='p-0 shadow-lg rounded-3'>
             <Card.Header className='d-flex'>
               <h2 className="fw-bolder text-primary m-0">
-                <i className="bi bi-list-check me-2"></i>
-                待送公文
+                <i className="bi-send-plus-fill me-2"></i>
+                送文紀錄
               </h2>
               <div className="ms-auto d-flex">
                 <Form method='get' className='my-auto'>
@@ -60,7 +50,7 @@ export default function LetterOut() {
               </div>
             </Card.Header>
             <Card.Body>
-              <Table hover>
+              <table className="table">
                 <thead>
                 <tr>
                   <th scope="col">送文號</th>
@@ -68,13 +58,14 @@ export default function LetterOut() {
                   <th scope="col">主旨</th>
                   <th scope="col">承辦人</th>
                   <th scope="col">陳報日期</th>
-                  <th scope="col">操作</th>
+                  <th scope="col">送文日期</th>
+                  <th scope="col">狀態</th>
                 </tr>
                 </thead>
                 <tbody>
-                <LetterOutList/>
+                <OutHistoryList/>
                 </tbody>
-              </Table>
+              </table>
             </Card.Body>
             <Card.Footer>
               {/*<ul className="pagination m-0">*/}

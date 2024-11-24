@@ -3,7 +3,7 @@ import * as webApi from "../WebApi";
 import {Button} from "react-bootstrap";
 import ModalRevoke from "../modals/ModalRevoke";
 
-export default function LetterSendList() {
+export default function OutSendList() {
   // 設定state
   const [data, setData] = useState([]); //用來動態設定資料
   // 載入時，從後端取得資料
