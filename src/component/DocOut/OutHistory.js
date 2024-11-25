@@ -15,9 +15,11 @@ import ModalSelectDate from "../modals/ModalSelectDate";
 
 export default function OutHistory() {
 
+
+
   const [data, setData] = useState([]);
     const [params, setParams]
-    = useState({status:0,ordering:'-number'}); //傳給API的參數
+    = useState({ordering:'-id'}); //傳給API的參數
 
     useEffect(() => {
     axios({

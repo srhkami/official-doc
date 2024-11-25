@@ -12,6 +12,7 @@ import { FaListCheck } from "react-icons/fa6";
 import axios from "axios";
 import {rootIP} from "../../info";
 import ModalLoading from "../modals/ModalLoading";
+import { MdEmail } from "react-icons/md";
 
 export default function OutManage() {
 
@@ -52,8 +53,8 @@ export default function OutManage() {
       <Row>
         <Col xs='12' className='mb-3 d-flex'>
           <ModalAddOut setIsLoading={setIsLoading}/>
-          <Link to='send' className="btn btn-sm btn-success ms-3 my-auto d-flex">
-            <BsFillSendArrowUpFill className='me-1 my-auto'/>
+          <Link to='print/0' className="btn btn-sm btn-success ms-3 my-auto d-flex">
+            <MdEmail   className='me-1 i-12 my-auto'/>
             送公文作業</Link>
           <Link to='history' className="btn btn-sm btn-secondary ms-auto my-auto d-flex">
             <MdOutlineHistory className='i-12 me-1 my-auto'/>

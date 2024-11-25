@@ -13,14 +13,14 @@ export default function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink to='/letter-out' className='nav-link'>送文 / 陳報</NavLink>
+              <NavLink to='/out' className='nav-link'>送文 / 陳報</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to='/ltter-in' className='nav-link'>收文 / 審批</NavLink>
+              <NavLink to='/in' className='nav-link'>收文 / 審批</NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to='/test' className='nav-link'>測試頁面</NavLink>
-            </li>
+            {/*<li className="nav-item">*/}
+            {/*  <NavLink to='/test' className='nav-link'>測試頁面</NavLink>*/}
+            {/*</li>*/}
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                  aria-expanded="false">

@@ -4,7 +4,7 @@ import OutManage from "./component/DocOut/OutManage";
 // import LetterIn from "./component/LetterIn";
 import ErrorPage from "./component/ErrorPage";
 import OutHistory from "./component/DocOut/OutHistory";
-import OutSend from "./component/DocOut/OutSend";
+import OutPrint from "./component/DocOut/OutPrint";
 import FormTestPage from "./component/FormTestPage";
 import Base from "./component/pages/Base";
 
@@ -14,10 +14,10 @@ const routes = createBrowserRouter([
   {
     path: '/',
     element: <Base content={<Home/>}/>,
-    // errorElement: <Layout main={<ErrorPage/>}/>,
+    errorElement: <Base main={<ErrorPage/>}/>,
   },
   {
-    path: '/letter-out',
+    path: '/out',
     element: <Base/>,
     children: [
       {
@@ -28,14 +28,15 @@ const routes = createBrowserRouter([
         path: 'history',
         element: <OutHistory/>
       },
-      {path: 'send',
-        element: <OutSend/>
+      {path: 'print/:date',
+        element: <OutPrint/>,
       }
-    ]
+    ],
+    errorElement: <Base main={<ErrorPage/>}/>,
   },
   // {
   //   path: '/letter-out/send',
-  //   element: <Layout main={<OutSend/>}/>
+  //   element: <Layout main={<OutPrint/>}/>
   // },
   // {
   //   path: '/test',

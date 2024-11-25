@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <div className="row">
         <div className="col-6">
-          <Link to='/letter-out' className="card mb-3 rounded-3 shadow-lg" style={{textDecoration:'none'}}>
+          <Link to='/out' className="card mb-3 rounded-3 shadow-lg" style={{textDecoration:'none'}}>
             <div className="row g-0">
               <div className="col-md-4 d-flex justify-content-center">
                 <i className="bi bi-send-plus-fill w-100"></i>
@@ -21,7 +21,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="col-6">
-          <a className="card mb-3 rounded-3 shadow-lg" style={{textDecoration:'none'}} href="/letter/in">
+          <Link to='/in' className="card mb-3 rounded-3 shadow-lg" style={{textDecoration:'none'}}>
             <div className="row g-0">
               <div className="col-md-4 d-flex justify-content-center">
               </div>
@@ -32,7 +32,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </>

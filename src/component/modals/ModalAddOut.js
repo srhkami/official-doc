@@ -12,6 +12,7 @@ import ModalRevoke from "./ModalRevoke";
 import {getDate} from "../tools/getDate";
 
 
+
 export default function ModalAddOut({setIsLoading}) {
 
   const [modalShow, setModalShow] = useState(false);

@@ -11,9 +11,12 @@ import PropTypes from "prop-types";
 import ModalRevoke from "./ModalRevoke";
 import {getDate} from "../tools/getDate";
 import {IoMdPrint} from "react-icons/io";
+import { useNavigate } from "react-router";
 
 
 export default function ModalSelectDate() {
+
+  let navigate = useNavigate();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -26,7 +29,7 @@ export default function ModalSelectDate() {
     = useForm();
 
   const onSubmit = (formDate) => {
-
+    navigate('/out/print/' + formDate.sendDate)
   }
 
   return (
@@ -44,7 +47,7 @@ export default function ModalSelectDate() {
                 className='form-control'
                 type='date'
                 defaultValue={getDate().today}
-                {...register('reportDate', {required: true})}
+                {...register('sendDate', {required: true})}
               />
             </Form.Group>
             <Col xs='4' className='d-flex'>

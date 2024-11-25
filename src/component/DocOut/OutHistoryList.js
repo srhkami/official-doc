@@ -25,7 +25,9 @@ export default function OutHistoryList({data}){
           <td>{obj.username}</td>
           <td>{obj.reportDate}</td>
           <td>{obj.sendDate}</td>
-          <td>{obj.status_display}</td>
+          <td>
+            {obj.status_display}
+          </td>
         </tr>
       )
     })

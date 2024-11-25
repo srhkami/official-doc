@@ -5,6 +5,9 @@ import * as webApi from "../WebApi";
 import {IoMdPrint} from "react-icons/io";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {BsFillSendArrowUpFill} from "react-icons/bs";
+import axios from "axios";
+import {getDate} from "../tools/getDate";
+import {rootIP} from "../../info";
 
 function send(handlePrint) {
   webApi.updatePost('letter')
@@ -17,6 +20,27 @@ export default function ModalSendOut(){
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
   const handleModalClose = () => setModalShow(false);
+
+  function sendDoc(){
+    // 確認送出公文
+    const today = getDate().today;
+    axios({
+      method: 'GET',
+      url: rootIP + '/doc/send_doc/',
+      params: {
+        "sendDate": today
+      }
+    })
+      .then(res=> {
+        alert('送出成功');
+        window.history.back();
+      })
+      .catch(err=>{
+        console.error(err);
+        alert('送出失敗，請重試');
+      })
+  }
+
 
   return (
     <>
@@ -36,9 +60,8 @@ export default function ModalSendOut(){
           </p>
           <hr/>
           <div className='d-flex justify-content-end'>
-            <MDBBtn color='success' className='me-2' >確認送出</MDBBtn>
+            <MDBBtn color='success' className='me-2' onClick={sendDoc}>確認送出</MDBBtn>
             <MDBBtn color="secondary"  onClick={handleModalClose}>取消</MDBBtn>
-
           </div>
         </Alert>
       </Modal>
