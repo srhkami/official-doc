@@ -10,6 +10,8 @@ import ModalLoading from "../modals/ModalLoading";
 import { MdEmail } from "react-icons/md";
 import InManageList from "./InManageList";
 import ModalAddIn from "../modals/ModalAddIn";
+import { LuFileSignature } from "react-icons/lu";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function InManage() {
 
@@ -50,20 +52,21 @@ export default function InManage() {
       <Row>
         <Col xs='12' className='mb-3 d-flex'>
           <ModalAddIn setIsLoading={setIsLoading}/>
-          {/*<Link to='print/0' className="btn btn-sm btn-success ms-3 my-auto d-flex">*/}
-          {/*  <MdEmail   className='me-1 i-12 my-auto'/>*/}
-          {/*  送公文作業</Link>*/}
-          {/*<Link to='history' className="btn btn-sm btn-secondary ms-auto my-auto d-flex">*/}
-          {/*  <MdOutlineHistory className='i-12 me-1 my-auto'/>*/}
-          {/*  查閱歷史記錄*/}
-          {/*</Link>*/}
+          <Link to='print/0' className="btn btn-sm btn-success ms-3 my-auto d-flex">
+            <FaCheckCircle  className='me-1 i-10 my-auto'/>
+            完成批閱
+          </Link>
+          <Link to='history' className="btn btn-sm btn-secondary ms-auto my-auto d-flex">
+            <MdOutlineHistory className='i-12 me-1 my-auto'/>
+            查閱收文記錄
+          </Link>
         </Col>
         <Col xs='12'>
           <Card className='p-0 shadow-lg rounded-3'>
             <Card.Header className='d-flex'>
-              <FaListCheck className='me-2 my-auto i-15' color='#3B71CA'/>
+              <LuFileSignature className='me-2 my-auto i-15' color='#3B71CA'/>
               <h3 className="fw-bolder m-0 my-auto text-primary">
-                待送公文
+                待批公文
               </h3>
               <div className="ms-auto d-flex">
                 <Form className='my-auto' onSubmit={searchStart}>
@@ -89,13 +92,12 @@ export default function InManage() {
                   <th scope="col">發文字號</th>
                   <th scope="col">組別</th>
                   <th scope="col">主旨</th>
-                  <th scope="col">收文日期</th>
                   <th scope="col">承辦人</th>
                   <th scope="col">操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                  {/*<InManageList data={data} setIsLoading={setIsLoading}/>*/}
+                  <InManageList data={data} setIsLoading={setIsLoading}/>
                 </tbody>
               </Table>
             </Card.Body>

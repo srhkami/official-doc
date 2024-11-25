@@ -4,13 +4,12 @@ import * as webApi from '../WebApi'
 import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
-import {BsEnvelopePlusFill } from "react-icons/bs";
+import {BsEnvelopePlusFill} from "react-icons/bs";
 import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
 import ModalRevoke from "./ModalRevoke";
 import {getDate} from "../tools/getDate";
-
 
 
 export default function ModalAddIn({setIsLoading}) {
@@ -42,7 +41,7 @@ export default function ModalAddIn({setIsLoading}) {
           // 新增文章
           axios({
             method: 'post',
-            url: rootIP + '/doc/out/',
+            url: rootIP + '/doc/in/',
             data: formDate,
           }).then(res => {
             setIsLoading(false);
@@ -73,7 +72,7 @@ export default function ModalAddIn({setIsLoading}) {
       </MDBBtn>
       <Modal show={modalShow} onHide={handleModalClose} backdrop="static">
         <Modal.Header closeButton>
-          <BsEnvelopePlusFill  className='i-12 me-2' color='#3B71CA'/>
+          <BsEnvelopePlusFill className='i-12 me-2' color='#3B71CA'/>
           <h4 className='fw-bolder text-primary my-auto'>新增收文</h4>
         </Modal.Header>
         <Modal.Body>
@@ -99,9 +98,9 @@ export default function ModalAddIn({setIsLoading}) {
                 className='form-control'
                 type='text'
                 placeholder='填末五碼，或公文種類'
-                readOnly
-                {...register('number',{required: '請填寫此欄位'})}
+                {...register('number', {required: '請填寫此欄位', maxLength: {value: 16, message: '上限16個字'}})}
               />
+              <span className='text-danger f-07 fw-bolder'>{errors.number && errors.number.message}</span>
             </Form.Group>
             <Form.Group className='col-12 mb-3'>
               <Form.Label>主旨：</Form.Label>
@@ -113,7 +112,7 @@ export default function ModalAddIn({setIsLoading}) {
               />
               <span className='text-danger f-07 fw-bolder'>{errors.title && errors.title.message}</span>
             </Form.Group>
-                        <Form.Group className='col-6 mb-3'>
+            <Form.Group className='col-6 mb-3'>
               <Form.Label>收文日期：</Form.Label>
               <input
                 className='form-control'
@@ -121,9 +120,9 @@ export default function ModalAddIn({setIsLoading}) {
                 defaultValue={getDate().today}
                 {...register('receiveDate', {required: '請填寫此欄位'})}
               />
-              <span className='text-danger f-07 fw-bolder'>{errors.reportDate && errors.reportDate.message}</span>
+              <span className='text-danger f-07 fw-bolder'>{errors.receiveDate && errors.receiveDate.message}</span>
             </Form.Group>
-                        <Form.Group className='col-6 mb-3'>
+            <Form.Group className='col-6 mb-3'>
               <Form.Label>備註：</Form.Label>
               <input
                 className='form-control'

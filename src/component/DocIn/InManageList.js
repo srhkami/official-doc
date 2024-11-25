@@ -4,6 +4,7 @@ import ModalRevoke from "../modals/ModalRevoke";
 import * as webApi from '../WebApi'
 import {MDBBtn} from "mdb-react-ui-kit";
 import PropTypes from "prop-types";
+import ModalAssign from "../modals/ModalAssign";
 
 
 export default function InManageList({data, setIsLoading}) {
@@ -14,10 +15,9 @@ export default function InManageList({data, setIsLoading}) {
         <th scope="row">{obj.number}</th>
         <td>{obj.groupName}</td>
         <td>{obj.title}</td>
-        <td>{obj.receiveDate}</td>
         <td>{obj.username}</td>
         <td>
-          {/*<ModalRevoke id={obj.id} setIsLoading={setIsLoading}/>*/}
+          <ModalAssign id={obj.id} setIsLoading={setIsLoading}/>
         </td>
       </tr>
     )

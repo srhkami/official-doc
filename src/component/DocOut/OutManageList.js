@@ -15,7 +15,6 @@ export default function OutManageList({data, setIsLoading}) {
         <td>{obj.groupName}</td>
         <td>{obj.title}</td>
         <td>{obj.username}</td>
-        <td>{obj.reportDate}</td>
         <td><ModalRevoke id={obj.id} setIsLoading={setIsLoading}/></td>
       </tr>
     )

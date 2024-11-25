@@ -32,7 +32,7 @@ export default function ModalRevoke({id,setIsLoading}) {
 
   return (
     <>
-      <MDBBtn color='danger' size='sm' onClick={handleModalShow}>撤銷</MDBBtn>
+      <MDBBtn color='danger' size='sm' outline onClick={handleModalShow}>撤銷</MDBBtn>
       {modalShow &&
         <Modal show={modalShow} onHide={handleModalClose}>
           <Alert variant='info' className='m-0'>

@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import ModalRevoke from "./ModalRevoke";
 import {getDate} from "../tools/getDate";
 import {IoMdPrint} from "react-icons/io";
-import { useNavigate } from "react-router";
+import {useNavigate} from "react-router";
 
 
 export default function ModalSelectDate() {
@@ -34,10 +34,10 @@ export default function ModalSelectDate() {
 
   return (
     <>
-          <MDBBtn className='ms-3 d-flex' size='sm' onClick={handleModalShow}>
-            <IoMdPrint className='me-1 i-12 my-auto'/>
-            列印歷史送文簿
-          </MDBBtn>
+      <MDBBtn className='ms-3 d-flex' size='sm' onClick={handleModalShow}>
+        <IoMdPrint className='me-1 i-12 my-auto'/>
+        列印歷史送文簿
+      </MDBBtn>
       <Modal show={modalShow} onHide={handleModalClose} size='sm'>
         <Modal.Body>
           <Form className='row' onSubmit={handleSubmit(onSubmit)}>

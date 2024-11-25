@@ -93,7 +93,6 @@ export default function OutManage() {
                   <th scope="col">組別</th>
                   <th scope="col">主旨</th>
                   <th scope="col">承辦人</th>
-                  <th scope="col">陳報日期</th>
                   <th scope="col">操作</th>
                 </tr>
                 </thead>
