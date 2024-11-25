@@ -4,7 +4,7 @@ import * as webApi from '../WebApi'
 import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
-import {BsFillSendPlusFill} from "react-icons/bs";
+import {BsEnvelopePlusFill } from "react-icons/bs";
 import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
@@ -13,9 +13,9 @@ import {getDate} from "../tools/getDate";
 
 
 
-export default function ModalAddOut({setIsLoading}) {
+export default function ModalAddIn({setIsLoading}) {
 
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = useState(true);
   const handleModalShow = () => setModalShow(true);
   const handleModalClose = () => setModalShow(false);
 
@@ -38,8 +38,7 @@ export default function ModalAddOut({setIsLoading}) {
       params: {ym: getDate().ym},
     })
       .then(res => {
-          const number = Number(res.data);
-          formDate.number = number
+          formDate.number = Number(res.data);
           // 新增文章
           axios({
             method: 'post',
@@ -48,7 +47,7 @@ export default function ModalAddOut({setIsLoading}) {
           }).then(res => {
             setIsLoading(false);
             handleModalClose();
-            alert(`新增成功！送文編號為【 ${number} 】`);
+            alert('新增成功！');
           })
             .catch(err => {
               setIsLoading(false);
@@ -74,31 +73,11 @@ export default function ModalAddOut({setIsLoading}) {
       </MDBBtn>
       <Modal show={modalShow} onHide={handleModalClose} backdrop="static">
         <Modal.Header closeButton>
-          <BsFillSendPlusFill className='i-12 me-2' color='#3B71CA'/>
-          <h4 className='fw-bolder text-primary my-auto'>新增送文</h4>
+          <BsEnvelopePlusFill  className='i-12 me-2' color='#3B71CA'/>
+          <h4 className='fw-bolder text-primary my-auto'>新增收文</h4>
         </Modal.Header>
         <Modal.Body>
           <Form className='row' onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group className='col-6 mb-3'>
-              <Form.Label>陳報日期：</Form.Label>
-              <input
-                className='form-control'
-                type='date'
-                defaultValue={getDate().today}
-                {...register('reportDate', {required: '請填寫此欄位'})}
-              />
-              <span className='text-danger f-07 fw-bolder'>{errors.reportDate && errors.reportDate.message}</span>
-            </Form.Group>
-            <Form.Group className='col-6 mb-3'>
-              <Form.Label>送文號：</Form.Label>
-              <input
-                className='form-control'
-                type='text'
-                placeholder='儲存後會自動取號'
-                readOnly
-                {...register('number')}
-              />
-            </Form.Group>
             <Form.Group className='col-6 mb-3'>
               <Form.Label>組別：</Form.Label>
               <select className='form-select' {...register('groupName', {required: '請選擇此欄位'})}>
@@ -115,16 +94,14 @@ export default function ModalAddOut({setIsLoading}) {
               <span className='text-danger f-07 fw-bolder'>{errors.groupName && errors.groupName.message}</span>
             </Form.Group>
             <Form.Group className='col-6 mb-3'>
-              <Form.Label>承辦人：</Form.Label>
-              <select className='form-select' {...register('username', {required: '請選擇此欄位'})}>
-                {/*這個選項應該要動態刷新才對*/}
-                <option value="">請選擇</option>
-                <option value="王小明">王小明</option>
-                <option value="劉小華">劉小華</option>
-                <option value="陳小白">陳小白</option>
-                <option value="吳小天">吳小天</option>
-              </select>
-              <span className='text-danger f-07 fw-bolder'>{errors.username && errors.username.message}</span>
+              <Form.Label>發文字號：</Form.Label>
+              <input
+                className='form-control'
+                type='text'
+                placeholder='填末五碼，或公文種類'
+                readOnly
+                {...register('number',{required: '請填寫此欄位'})}
+              />
             </Form.Group>
             <Form.Group className='col-12 mb-3'>
               <Form.Label>主旨：</Form.Label>
@@ -135,6 +112,26 @@ export default function ModalAddOut({setIsLoading}) {
                 {...register('title', {required: '請填寫此欄位'})}
               />
               <span className='text-danger f-07 fw-bolder'>{errors.title && errors.title.message}</span>
+            </Form.Group>
+                        <Form.Group className='col-6 mb-3'>
+              <Form.Label>收文日期：</Form.Label>
+              <input
+                className='form-control'
+                type='date'
+                defaultValue={getDate().today}
+                {...register('receiveDate', {required: '請填寫此欄位'})}
+              />
+              <span className='text-danger f-07 fw-bolder'>{errors.reportDate && errors.reportDate.message}</span>
+            </Form.Group>
+                        <Form.Group className='col-6 mb-3'>
+              <Form.Label>備註：</Form.Label>
+              <input
+                className='form-control'
+                type='text'
+                placeholder='可留空'
+                readOnly
+                {...register('remark')}
+              />
             </Form.Group>
             <Col xs='12' className='d-flex'>
               <MDBBtn type='submit' className='ms-auto'>
@@ -148,6 +145,6 @@ export default function ModalAddOut({setIsLoading}) {
   )
 }
 
-ModalAddOut.propTypes = {
+ModalAddIn.propTypes = {
   setIsLoading: PropTypes.func,
 };
