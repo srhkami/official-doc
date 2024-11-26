@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {Col, Form, Modal} from "react-bootstrap";
 import {getDate} from "../tools/getDate";
 import {useForm} from "react-hook-form";
+import OptionsUser from "../tools/OptionsUser";
 
 export default function ({id, setIsLoading}) {
   // 用來分派承辦人
@@ -34,12 +35,7 @@ export default function ({id, setIsLoading}) {
               <Form.Group className='col-8'>
                 <Form.Label>請選擇分派對象：</Form.Label>
                 <select className='form-select' {...register('username', {required: true})}>
-                  {/*這個選項應該要動態刷新才對*/}
-                  <option value="">請選擇</option>
-                  <option value="王小明">王小明</option>
-                  <option value="劉小華">劉小華</option>
-                  <option value="陳小白">陳小白</option>
-                  <option value="吳小天">吳小天</option>
+                  <OptionsUser/>
                 </select>
                 <span className='text-danger f-07 fw-bolder'>{errors.username && errors.username.message}</span>
               </Form.Group>

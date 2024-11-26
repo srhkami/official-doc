@@ -8,8 +8,9 @@ import {BsFillSendPlusFill} from "react-icons/bs";
 import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
-import ModalRevoke from "./ModalRevoke";
 import {getDate} from "../tools/getDate";
+import OptionsGroup from "../tools/OptionsGroup";
+import OptionsUser from "../tools/OptionsUser";
 
 
 
@@ -102,26 +103,14 @@ export default function ModalAddOut({setIsLoading}) {
               <Form.Label>組別：</Form.Label>
               <select className='form-select' {...register('groupName', {required: '請選擇此欄位'})}>
                 {/*這個選項應該要動態刷新才對*/}
-                <option value="">請選擇</option>
-                <option value="一組">一組</option>
-                <option value="二組">二組</option>
-                <option value="三組">三組</option>
-                <option value="四組">四組</option>
-                <option value="五組">五組</option>
-                <option value="偵查隊">偵查隊</option>
-                <option value="勤務中心">勤務中心</option>
+                <OptionsGroup/>
               </select>
               <span className='text-danger f-07 fw-bolder'>{errors.groupName && errors.groupName.message}</span>
             </Form.Group>
             <Form.Group className='col-6 mb-3'>
               <Form.Label>承辦人：</Form.Label>
               <select className='form-select' {...register('username', {required: '請選擇此欄位'})}>
-                {/*這個選項應該要動態刷新才對*/}
-                <option value="">請選擇</option>
-                <option value="王小明">王小明</option>
-                <option value="劉小華">劉小華</option>
-                <option value="陳小白">陳小白</option>
-                <option value="吳小天">吳小天</option>
+                <OptionsUser/>
               </select>
               <span className='text-danger f-07 fw-bolder'>{errors.username && errors.username.message}</span>
             </Form.Group>
