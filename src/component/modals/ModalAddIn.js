@@ -14,7 +14,7 @@ import {getDate} from "../tools/getDate";
 
 export default function ModalAddIn({setIsLoading}) {
 
-  const [modalShow, setModalShow] = useState(true);
+  const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
   const handleModalClose = () => setModalShow(false);
 
@@ -30,38 +30,19 @@ export default function ModalAddIn({setIsLoading}) {
 
   const onSubmit = (formDate) => {
     setIsLoading(true);
-    // 取得送文號
     axios({
-      method: 'get',
-      url: rootIP + '/doc/get_number/',
-      params: {ym: getDate().ym},
+      method: 'post',
+      url: rootIP + '/doc/in/',
+      data: formDate,
+    }).then(res => {
+      setIsLoading(false);
+      handleModalClose();
+      alert('新增成功！');
     })
-      .then(res => {
-          formDate.number = Number(res.data);
-          // 新增文章
-          axios({
-            method: 'post',
-            url: rootIP + '/doc/in/',
-            data: formDate,
-          }).then(res => {
-            setIsLoading(false);
-            handleModalClose();
-            alert('新增成功！');
-          })
-            .catch(err => {
-              setIsLoading(false);
-              console.log(err)
-              if (err.response.data.number) {
-                alert('取得送文號失敗，請重試');
-                // 這個還沒測試
-              }
-            })
-        }
-      )
       .catch(err => {
-        console.log(err);
+        setIsLoading(false);
+        console.log(err)
       })
-    console.log(formDate);
   }
 
   return (

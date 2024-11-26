@@ -16,7 +16,7 @@ import { MdEmail } from "react-icons/md";
 
 export default function OutManage() {
 
-  const [modalShow, setModalShow] = useState(false);
+
   const [data, setData] = useState([]);
   const [params, setParams]
     = useState({status:0,ordering:'-number'}); //傳給API的參數
@@ -38,7 +38,7 @@ export default function OutManage() {
     // 關鍵字搜尋
     e.preventDefault();
     const form = new FormData(e.target);
-    const keyword = form.get('search')
+    const keyword = form.get('keyword')
     setParams((state) => ({...state, search: keyword}))
   }
 
@@ -56,7 +56,7 @@ export default function OutManage() {
           <Link to='print/0' className="btn btn-sm btn-success ms-3 my-auto d-flex">
             <MdEmail   className='me-1 i-12 my-auto'/>
             送公文作業</Link>
-          <Link to='history' className="btn btn-sm btn-secondary ms-auto my-auto d-flex">
+          <Link to='history/1' className="btn btn-sm btn-secondary ms-auto my-auto d-flex">
             <MdOutlineHistory className='i-12 me-1 my-auto'/>
             查閱歷史記錄
           </Link>
@@ -70,7 +70,7 @@ export default function OutManage() {
               </h3>
               <div className="ms-auto d-flex">
                 <Form className='my-auto' onSubmit={searchStart}>
-                  <Form.Control type='text' name='search' placeholder='搜尋文號/主旨/承辦人'></Form.Control>
+                  <Form.Control type='text' name='keyword' placeholder='搜尋文號/主旨/承辦人'></Form.Control>
                 </Form>
                 <Dropdown className='my-auto ms-2'>
                   <Dropdown.Toggle variant='secondary' size='sm'>
@@ -101,15 +101,9 @@ export default function OutManage() {
                 </tbody>
               </Table>
             </Card.Body>
-            <Card.Footer>
-              {/*<ul className="pagination m-0">*/}
-              {/*  {{page_html}}*/}
-              {/*</ul>*/}
-            </Card.Footer>
           </Card>
         </Col>
       </Row>
-      {/*<LetterOutAddForm n={number} d={today}/>*/}
     </>
   )
 }

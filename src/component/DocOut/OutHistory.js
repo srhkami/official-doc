@@ -11,30 +11,50 @@ import {IoMdPrint} from "react-icons/io";
 import {rootIP} from "../../info";
 import {MdOutlineHistory} from "react-icons/md";
 import ModalSelectDate from "../modals/ModalSelectDate";
+import PageTool from "../tools/PageTool";
+import {useParams} from "react-router-dom";
 
 
 export default function OutHistory() {
 
 
-
   const [data, setData] = useState([]);
-    const [params, setParams]
-    = useState({ordering:'-id'}); //傳給API的參數
+  const [params, setParams]
+    = useState({page_size: 5, ordering: '-id'}); //傳給API的參數
+  let {pageNumber} = useParams(); // 網址的頁碼參數
+  const [pageCount, setPageCount] = useState({}) // 頁碼總數
 
-    useEffect(() => {
+  useEffect(() => {
+    setData([]);
     axios({
       method: 'GET',
       url: rootIP + '/doc/out/',
-      params:params,
+      params: {
+        ...params,
+        page: pageNumber, // 當前頁碼}
+      }
     })
       .then(res => {
         setData(res.data.results);
+        setPageCount(res.data.page_count);
       })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [pageNumber, params]);
 
+  const searchStart = (e) => {
+    // 關鍵字搜尋
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const keyword = form.get('keyword')
+    setParams((state) => ({...state, search: keyword}))
+  }
+
+  const orderBy = (value) => {
+    // 排序
+    setParams((state) => ({...state, ordering: value}))
+  }
 
   return (
     <>
@@ -54,18 +74,26 @@ export default function OutHistory() {
                 送文紀錄
               </h3>
               <div className="ms-auto d-flex">
-                <Form method='get' className='my-auto'>
-                  <Form.Control type='text' placeholder='關鍵字搜尋'></Form.Control>
+                <Form method='get' className='my-auto' onSubmit={searchStart}>
+                  <Form.Control type='text' name='keyword' placeholder='搜尋文號/主旨/承辦人'></Form.Control>
                 </Form>
                 <Dropdown className='my-auto ms-2'>
                   <Dropdown.Toggle variant='secondary' size='sm'>
                     排序方式
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item href='?ordering=-number'>送文號（新在上)</Dropdown.Item>
-                    <Dropdown.Item href='?ordering=number'>送文號（舊在上）</Dropdown.Item>
-                    <Dropdown.Item href='?ordering=username'>承辦人</Dropdown.Item>
-                    <Dropdown.Item href='?ordering=group_name'>送達單位</Dropdown.Item>
+                    <Dropdown.Item onClick={() => {
+                      orderBy('-number')
+                    }}>送文號（新到舊)</Dropdown.Item>
+                    <Dropdown.Item onClick={() => {
+                      orderBy('number')
+                    }}>送文號（舊到新）</Dropdown.Item>
+                    <Dropdown.Item onClick={() => {
+                      orderBy('username')
+                    }}>承辦人</Dropdown.Item>
+                    <Dropdown.Item onClick={() => {
+                      orderBy('groupName')
+                    }}>送達單位</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
@@ -89,14 +117,13 @@ export default function OutHistory() {
               </table>
             </Card.Body>
             <Card.Footer>
-              {/*<ul className="pagination m-0">*/}
-              {/*  {{page_html}}*/}
-              {/*</ul>*/}
+              <div className='d-flex justify-content-center align-items-center'>
+                <PageTool path='/out/history/' pageNumber={pageNumber} pageCount={pageCount}/>
+              </div>
             </Card.Footer>
           </Card>
         </Col>
       </Row>
-      {/*<LetterOutAddForm n={number} d={today}/>*/}
     </>
   )
 }

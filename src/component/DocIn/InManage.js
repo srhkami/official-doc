@@ -15,10 +15,9 @@ import { FaCheckCircle } from "react-icons/fa";
 
 export default function InManage() {
 
-  const [modalShow, setModalShow] = useState(false);
   const [data, setData] = useState([]);
   const [params, setParams]
-    = useState({status:0,ordering:'-number'}); //傳給API的參數
+    = useState({status:0,ordering:'group'}); //傳給API的參數
   const [isLoading, setIsLoading] = useState(false); // 是否為載入中的狀態
 
   useEffect(() => {
@@ -37,7 +36,7 @@ export default function InManage() {
     // 關鍵字搜尋
     e.preventDefault();
     const form = new FormData(e.target);
-    const keyword = form.get('search')
+    const keyword = form.get('keyword')
     setParams((state) => ({...state, search: keyword}))
   }
 
@@ -64,13 +63,13 @@ export default function InManage() {
         <Col xs='12'>
           <Card className='p-0 shadow-lg rounded-3'>
             <Card.Header className='d-flex'>
-              <LuFileSignature className='me-2 my-auto i-15' color='#3B71CA'/>
-              <h3 className="fw-bolder m-0 my-auto text-primary">
+              <LuFileSignature className='me-2 my-auto i-15'/>
+              <h3 className="fw-bolder m-0 my-auto">
                 待批公文
               </h3>
               <div className="ms-auto d-flex">
                 <Form className='my-auto' onSubmit={searchStart}>
-                  <Form.Control type='text' name='search' placeholder='搜尋文號/主旨/承辦人'></Form.Control>
+                  <Form.Control type='text' name='keyword' placeholder='搜尋文號/主旨/承辦人'></Form.Control>
                 </Form>
                 <Dropdown className='my-auto ms-2'>
                   <Dropdown.Toggle variant='secondary' size='sm'>
@@ -101,15 +100,9 @@ export default function InManage() {
                 </tbody>
               </Table>
             </Card.Body>
-            <Card.Footer>
-              {/*<ul className="pagination m-0">*/}
-              {/*  {{page_html}}*/}
-              {/*</ul>*/}
-            </Card.Footer>
           </Card>
         </Col>
       </Row>
-      {/*<LetterOutAddForm n={number} d={today}/>*/}
     </>
   )
 }

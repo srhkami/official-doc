@@ -18,18 +18,8 @@ export default function Nav() {
             <li className="nav-item">
               <NavLink to='/in' className='nav-link'>收文 / 審批</NavLink>
             </li>
-            {/*<li className="nav-item">*/}
-            {/*  <NavLink to='/test' className='nav-link'>測試頁面</NavLink>*/}
-            {/*</li>*/}
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                 aria-expanded="false">
-                系統設定
-              </a>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">使用者設定</a></li>
-                <li><a className="dropdown-item" href="#">組別設定</a></li>
-              </ul>
+            <li className="nav-item">
+              <NavLink to='/setting' className='nav-link'>系統設定</NavLink>
             </li>
           </ul>
         </div>

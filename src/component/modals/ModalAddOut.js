@@ -63,7 +63,6 @@ export default function ModalAddOut({setIsLoading}) {
       .catch(err => {
         console.log(err);
       })
-    console.log(formDate);
   }
 
   return (

@@ -33,7 +33,7 @@ export default function ({id, setIsLoading}) {
             <Form className='row' onSubmit={handleSubmit(onSubmit)}>
               <Form.Group className='col-8'>
                 <Form.Label>請選擇分派對象：</Form.Label>
-                <select className='form-select' {...register('username', {required: '請選擇此欄位'})}>
+                <select className='form-select' {...register('username', {required: true})}>
                   {/*這個選項應該要動態刷新才對*/}
                   <option value="">請選擇</option>
                   <option value="王小明">王小明</option>
