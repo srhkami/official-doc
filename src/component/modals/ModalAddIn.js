@@ -30,6 +30,7 @@ export default function ModalAddIn({setIsLoading}) {
 
   const onSubmit = (formDate) => {
     setIsLoading(true);
+    formDate['receiveDate'] = getDate().today;
     axios({
       method: 'post',
       url: rootIP + '/doc/in/',
@@ -93,26 +94,26 @@ export default function ModalAddIn({setIsLoading}) {
               />
               <span className='text-danger f-07 fw-bolder'>{errors.title && errors.title.message}</span>
             </Form.Group>
-            <Form.Group className='col-6 mb-3'>
-              <Form.Label>收文日期：</Form.Label>
-              <input
-                className='form-control'
-                type='date'
-                defaultValue={getDate().today}
-                {...register('receiveDate', {required: '請填寫此欄位'})}
-              />
-              <span className='text-danger f-07 fw-bolder'>{errors.receiveDate && errors.receiveDate.message}</span>
-            </Form.Group>
-            <Form.Group className='col-6 mb-3'>
-              <Form.Label>備註：</Form.Label>
-              <input
-                className='form-control'
-                type='text'
-                placeholder='可留空'
-                readOnly
-                {...register('remark')}
-              />
-            </Form.Group>
+            {/*<Form.Group className='col-6 mb-3'>*/}
+            {/*  <Form.Label>收文日期：</Form.Label>*/}
+            {/*  <input*/}
+            {/*    className='form-control'*/}
+            {/*    type='date'*/}
+            {/*    defaultValue={getDate().today}*/}
+            {/*    {...register('receiveDate', {required: '請填寫此欄位'})}*/}
+            {/*  />*/}
+            {/*  <span className='text-danger f-07 fw-bolder'>{errors.receiveDate && errors.receiveDate.message}</span>*/}
+            {/*</Form.Group>*/}
+            {/*<Form.Group className='col-6 mb-3'>*/}
+            {/*  <Form.Label>備註：</Form.Label>*/}
+            {/*  <input*/}
+            {/*    className='form-control'*/}
+            {/*    type='text'*/}
+            {/*    placeholder='可留空'*/}
+            {/*    readOnly*/}
+            {/*    {...register('remark')}*/}
+            {/*  />*/}
+            {/*</Form.Group>*/}
             <Col xs='12' className='d-flex'>
               <MDBBtn type='submit' className='ms-auto'>
                 確定新增

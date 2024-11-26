@@ -1,21 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
-import OutManageList from "./OutManageList";
 import {Button, Row, Col, Card, Dropdown, Form} from "react-bootstrap";
-import ModalAddOut from "../modals/ModalAddOut";
-import OutHistoryList from "./OutHistoryList";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {IoArrowBackOutline} from "react-icons/io5";
-import {IoMdPrint} from "react-icons/io";
 import {rootIP} from "../../info";
 import {MdOutlineHistory} from "react-icons/md";
 import ModalSelectDate from "../modals/ModalSelectDate";
 import PageTool from "../tools/PageTool";
 import {useParams} from "react-router-dom";
+import InManageList from "./InManageList";
+import InHistoryList from "./InHistoryList";
 
 
-export default function OutHistory() {
+export default function InHistory() {
 
 
   const [data, setData] = useState([]);
@@ -28,7 +26,7 @@ export default function OutHistory() {
     setData([]);
     axios({
       method: 'GET',
-      url: rootIP + '/doc/out/',
+      url: rootIP + '/doc/in/',
       params: {
         ...params,
         page: pageNumber, // 當前頁碼}
@@ -64,7 +62,7 @@ export default function OutHistory() {
             <IoArrowBackOutline className='me-1 my-auto'/>
             返回
           </MDBBtn>
-          <ModalSelectDate/>
+          <ModalSelectDate mode='in'/>
         </Col>
         <Col xs='12'>
           <Card className='p-0 shadow-lg rounded-3'>
@@ -102,17 +100,17 @@ export default function OutHistory() {
               <table className="table">
                 <thead>
                 <tr>
-                  <th scope="col">送文號</th>
+                  <th scope="col">字號</th>
+                  <th scope="col">收文日期</th>
                   <th scope="col">組別</th>
                   <th scope="col">主旨</th>
+                  <th scope="col">批閱日期</th>
                   <th scope="col">承辦人</th>
-                  <th scope="col">陳報日期</th>
-                  <th scope="col">送文日期</th>
                   <th scope="col">狀態</th>
                 </tr>
                 </thead>
                 <tbody>
-                <OutHistoryList data={data}/>
+                <InHistoryList data={data}/>
                 </tbody>
               </table>
             </Card.Body>

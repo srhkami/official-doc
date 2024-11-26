@@ -2,8 +2,6 @@ import React, {createRef, useEffect, useState, useRef} from "react";
 import {Button, Card, Col, Row, Table} from "react-bootstrap";
 import {Link, useParams} from "react-router-dom";
 import {useReactToPrint} from 'react-to-print'
-import OutPrintList from "./OutPrintList";
-// import Pdf from 'react-to-pdf'
 import ModalSendOut from "../modals/ModalSendOut";
 import {IoArrowBackOutline} from "react-icons/io5";
 import {IoMdPrint} from "react-icons/io";
@@ -12,9 +10,10 @@ import {getDate} from "../tools/getDate";
 import * as webApi from "../WebApi";
 import axios from "axios";
 import {rootIP} from "../../info";
+import InPrintList from "./InPrintList";
 
 
-export default function OutPrint() {
+export default function InPrint() {
 
   const {date} = useParams()
 
@@ -25,10 +24,10 @@ export default function OutPrint() {
   const handlePrint = useReactToPrint({contentRef})
 
   useEffect(() => {
-    const params = date === '0' ? {status:0,ordering:'groupName'} : {sendDate: date, status: 1, ordering:'groupName'}
+    const params =  {receiveDate: date, ordering:'groupName'}
     axios({
       method: 'GET',
-      url: rootIP + '/doc/out/',
+      url: rootIP + '/doc/in/',
       params: params,
     })
       .then(res => {
@@ -56,31 +55,27 @@ export default function OutPrint() {
         <Card className='p-0 shadow-0 rounded-3'>
           <Card.Header className='d-flex'>
             <h3 className="fw-bolder text-primary my-auto">
-              民興派出所送文簿
+              民興派出所收文簿
             </h3>
             <h4 className='fw-medium ms-auto my-auto'>
-              {date === '0' ? today : date}
+              {date}
             </h4>
           </Card.Header>
           <Card.Body>
             <Table bordered>
               <thead>
               <tr className='text-center'>
-                <th scope="col" width='12%'>送文號</th>
-                <th scope="col" width='12%'>組別</th>
-                <th scope="col" width='15%'>承辦人</th>
-                <th scope="col" width='46%'>主旨</th>
-                <th scope="col" width='15%'>簽收</th>
+                <th scope="col" width='10%'>組別</th>
+                <th scope="col" width='10%'>收文號</th>
+                <th scope="col" width='38%'>主旨</th>
+                <th scope="col" width='15%'>批閱日期</th>
+                <th scope="col" width='12%'>承辦人</th>
               </tr>
               </thead>
               <tbody>
-              <OutPrintList data={data}/>
+              <InPrintList data={data}/>
               </tbody>
             </Table>
-            <div className='text-secondary'>
-              ※ 公文經簽收後，請妥善保存此表，以利事後檢閱。
-              {date !== '0' && `(此表為${getDate().today}重新列印)`}
-            </div>
           </Card.Body>
         </Card>
       </Col>

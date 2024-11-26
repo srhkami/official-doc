@@ -7,6 +7,8 @@ import OutPrint from "./component/DocOut/OutPrint";
 import Base from "./component/pages/Base";
 import InManage from "./component/DocIn/InManage";
 import Setting from "./component/pages/Setting";
+import InHistory from "./component/DocIn/InHistory";
+import InPrint from "./component/DocIn/InPrint";
 
 
 const routes = createBrowserRouter([
@@ -42,13 +44,13 @@ const routes = createBrowserRouter([
         path: '',
         element: <InManage/>
       },
-      // {
-      //   path: 'history',
-      //   element: <OutHistory/>
-      // },
-      // {path: 'print/:date',
-      //   element: <OutPrint/>,
-      // }
+      {
+        path: 'history',
+        element: <InHistory/>
+      },
+      {path: 'print/:date',
+        element: <InPrint/>,
+      }
     ],
     errorElement: <Base main={<ErrorPage/>}/>,
   },

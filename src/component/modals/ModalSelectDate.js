@@ -12,9 +12,10 @@ import ModalRevoke from "./ModalRevoke";
 import {getDate} from "../tools/getDate";
 import {IoMdPrint} from "react-icons/io";
 import {useNavigate} from "react-router";
+import ModalAddUser from "./ModalAddUser";
 
 
-export default function ModalSelectDate() {
+export default function ModalSelectDate({mode='out'}) {
 
   let navigate = useNavigate();
 
@@ -29,20 +30,25 @@ export default function ModalSelectDate() {
     = useForm();
 
   const onSubmit = (formDate) => {
-    navigate('/out/print/' + formDate.sendDate)
+    if (mode === 'out'){
+      navigate('/out/print/' + formDate.sendDate);
+    }else {
+      navigate('/in/print/' + formDate.sendDate);
+    }
+
   }
 
   return (
     <>
       <MDBBtn className='ms-3 d-flex' size='sm' onClick={handleModalShow}>
         <IoMdPrint className='me-1 i-12 my-auto'/>
-        列印歷史送文簿
+        {mode === 'out'? '列印歷史送文簿' : '列印歷史收文簿'}
       </MDBBtn>
       <Modal show={modalShow} onHide={handleModalClose} size='sm'>
         <Modal.Body>
           <Form className='row' onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className='col-8'>
-              <Form.Label>請選擇送文日期：</Form.Label>
+              <Form.Label>請選擇收送文日期：</Form.Label>
               <input
                 className='form-control'
                 type='date'
@@ -61,3 +67,7 @@ export default function ModalSelectDate() {
     </>
   )
 }
+
+ModalAddUser.propTypes = {
+  mode: PropTypes.string,
+};

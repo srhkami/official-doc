@@ -4,15 +4,16 @@ import {MDBBtn} from "mdb-react-ui-kit";
 import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from 'prop-types';
+import {TiDelete} from "react-icons/ti";
 
-export default function ModalRevoke({id,setIsLoading}) {
+export default function ModalRevoke({id, setIsLoading}) {
   // 用來撤銷送文
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
   const handleModalClose = () => setModalShow(false);
 
-  function rovoke(){
+  function rovoke() {
     setIsLoading(true);
     axios({
       method: 'PATCH',
@@ -20,10 +21,10 @@ export default function ModalRevoke({id,setIsLoading}) {
       data: {
         "status": 2
       }
-    }).then(res =>{
+    }).then(res => {
       setIsLoading(false);
       alert('撤銷成功')
-    }).catch(err =>{
+    }).catch(err => {
       setIsLoading(false);
       console.error(err);
       alert('撤銷失敗，請重試');
@@ -32,7 +33,10 @@ export default function ModalRevoke({id,setIsLoading}) {
 
   return (
     <>
-      <MDBBtn color='danger' size='sm' outline onClick={handleModalShow}>撤銷</MDBBtn>
+      <MDBBtn color='danger' outline size='sm' className='d-flex mb-auto' onClick={handleModalShow}>
+        <TiDelete className='i-12 me-1 my-auto'/>
+        撤銷
+      </MDBBtn>
       {modalShow &&
         <Modal show={modalShow} onHide={handleModalClose}>
           <Alert variant='info' className='m-0'>
@@ -42,7 +46,7 @@ export default function ModalRevoke({id,setIsLoading}) {
             <hr/>
             <div className='d-flex justify-content-end'>
               <MDBBtn color="danger" className='me-2' onClick={rovoke}>確定撤銷</MDBBtn>
-              <MDBBtn color="secondary"  onClick={handleModalClose}>取消</MDBBtn>
+              <MDBBtn color="secondary" onClick={handleModalClose}>取消</MDBBtn>
             </div>
           </Alert>
         </Modal>
