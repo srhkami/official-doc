@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState,} from 'react';
 import {ButtonGroup, Col, Form, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
-import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import {rootIP} from "../../info";

@@ -1,22 +1,12 @@
 import React, {useContext, useState} from 'react';
-import {Link} from "react-router-dom";
 import {Modal, Alert} from "react-bootstrap";
-import * as webApi from "../WebApi";
-import {IoMdPrint} from "react-icons/io";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {BsFillSendArrowUpFill} from "react-icons/bs";
-import axios from "axios";
 import {getDate} from "../tools/getDate";
 import {rootIP} from "../../info";
-import {useNavigate} from "react-router";
+import {useNavigate} from "react-router-dom";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";
-
-function send(handlePrint) {
-  webApi.updatePost('letter')
-  handlePrint();
-}
-
 
 export default function ModalSendOut({setIsLoading}) {
 

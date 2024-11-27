@@ -1,14 +1,5 @@
-import {Card, Col, Dropdown, Form, Row, Table} from "react-bootstrap";
-import {MDBBtn} from "mdb-react-ui-kit";
-import {IoArrowBackOutline} from "react-icons/io5";
-import ModalSelectDate from "../modals/ModalSelectDate";
-import {MdOutlineHistory} from "react-icons/md";
-import OutHistoryList from "../DocOut/OutHistoryList";
-import PageTool from "../tools/PageTool";
+import {Col, Row} from "react-bootstrap";
 import React from "react";
-import {LuFileSignature} from "react-icons/lu";
-import InManageList from "../DocIn/InManageList";
-import { FaUserCog } from "react-icons/fa";
 import SettingUser from "./SettingUser";
 import SettingGroup from "./SettingGroup";
 

@@ -4,7 +4,6 @@ import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import {BsEnvelopePlusFill} from "react-icons/bs";
-import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
 import {getDate} from "../tools/getDate";

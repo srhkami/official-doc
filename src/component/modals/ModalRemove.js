@@ -1,10 +1,8 @@
 import React, {useContext, useState} from 'react';
 import {Alert, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
-import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from 'prop-types';
-import {TiDelete} from "react-icons/ti";
 import {MdDeleteForever} from "react-icons/md";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";

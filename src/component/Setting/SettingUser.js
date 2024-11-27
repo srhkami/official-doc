@@ -1,9 +1,8 @@
 import {Card, Table} from "react-bootstrap";
-import {FaPlusCircle, FaUserCog} from "react-icons/fa";
+import {FaUserCog} from "react-icons/fa";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {rootIP} from "../../info";
-import {MDBBtn} from "mdb-react-ui-kit";
 import ModalAddUser from "../modals/ModalAddUser";
 import ModalLoading from "../modals/ModalLoading";
 import ModalEditUser from "../modals/ModalEditUser";

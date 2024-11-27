@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
-import {Button, Row, Col, Card, Dropdown, Form, Modal, Table} from "react-bootstrap";
-import ModalAddOut from "../modals/ModalAddOut";
+import {Row, Col, Card, Dropdown, Form} from "react-bootstrap";
 import {MdOutlineHistory} from "react-icons/md";
-import {FaListCheck} from "react-icons/fa6";
 import axios from "axios";
 import {rootIP} from "../../info";
 import ModalLoading from "../modals/ModalLoading";
-import {MdEmail} from "react-icons/md";
 import InManageList from "./InManageList";
 import ModalAddIn from "../modals/ModalAddIn";
-import {LuFileSignature} from "react-icons/lu";
-import {FaCheckCircle} from "react-icons/fa";
 import ModalReaded from "../modals/ModalReaded";
 
 export default function InManage() {

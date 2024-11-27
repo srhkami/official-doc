@@ -2,6 +2,7 @@ import {NavLink, Link} from "react-router-dom";
 import {MDBContainer, MDBNavbar, MDBNavbarToggler, MDBCollapse} from 'mdb-react-ui-kit';
 import {useState} from "react";
 import {FaBars} from "react-icons/fa";
+import {appVer} from "../../info";
 
 
 export default function Nav() {
@@ -11,7 +12,7 @@ export default function Nav() {
   return (
     <MDBNavbar expand='lg' className='bg-body-tertiary sticky-top'>
       <MDBContainer fluid>
-        <Link to='/' className="navbar-brand fw-bolder">電子化收送公文簿</Link>
+        <Link to='/' className="navbar-brand fw-bolder">民興所電子收送公文簿</Link>
         <MDBNavbarToggler
           type='button'
           aria-expanded='false'
@@ -30,6 +31,9 @@ export default function Nav() {
             </li>
             <li className="nav-item">
               <NavLink to='/setting' className='nav-link'>系統設定</NavLink>
+            </li>
+            <li className="nav-item">
+              <a className='nav-link text-secondary'>v.{appVer}</a>
             </li>
           </ul>
         </MDBCollapse>

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
 import axios from "axios";
-import {Button, Row, Col, Card, Dropdown, Form} from "react-bootstrap";
+import {Row, Col, Card, Dropdown, Form} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {IoArrowBackOutline} from "react-icons/io5";
 import {rootIP} from "../../info";
@@ -9,7 +8,6 @@ import {MdOutlineHistory} from "react-icons/md";
 import ModalSelectDate from "../modals/ModalSelectDate";
 import PageTool from "../tools/PageTool";
 import {useParams} from "react-router-dom";
-import InManageList from "./InManageList";
 import InHistoryList from "./InHistoryList";
 
 

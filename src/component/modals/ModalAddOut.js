@@ -1,6 +1,5 @@
-import React, {useContext, useState,} from 'react';
-import {Button, Col, Form, Modal} from "react-bootstrap";
-import * as webApi from '../WebApi'
+import {useContext, useState,} from 'react';
+import {Col, Form, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";

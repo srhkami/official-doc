@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Button, Row, Col, Card, Dropdown, Form} from "react-bootstrap";
+import {Row, Col, Card, Dropdown, Form} from "react-bootstrap";
 import OutHistoryList from "./OutHistoryList";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {IoArrowBackOutline} from "react-icons/io5";

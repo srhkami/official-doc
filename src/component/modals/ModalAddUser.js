@@ -1,9 +1,8 @@
-import React, {useContext, useEffect, useState,} from 'react';
+import {useContext,useState,} from 'react';
 import {Col, Form, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
-import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
 import {FaUserPlus} from "react-icons/fa";
