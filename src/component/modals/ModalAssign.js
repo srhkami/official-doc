@@ -10,6 +10,7 @@ import ModalEditUser from "./ModalEditUser";
 import axios from "axios";
 import {rootIP} from "../../info";
 import { BiSolidSelectMultiple } from "react-icons/bi";
+import { TbCopy,TbCopyCheckFilled  } from "react-icons/tb";
 
 export default function ModalAssign({id, setIsLoading, username}) {
   // 用來分派承辦人
@@ -70,7 +71,7 @@ export default function ModalAssign({id, setIsLoading, username}) {
   return (
     <>
       <MDBBtn size='sm' outline className='mb-auto d-flex' color={username ? '' : 'warning'} onClick={handleModalShow}>
-        <BiSolidSelectMultiple className='i-12 me-1 my-auto' />
+        { username ? <TbCopyCheckFilled className='i-12 me-1 my-auto' /> : <TbCopy className='i-12 me-1 my-auto'/>}
         {username ? username : '分派'}
       </MDBBtn>
       {modalShow &&

@@ -8,6 +8,7 @@ import {BsFillSendArrowUpFill} from "react-icons/bs";
 import axios from "axios";
 import {getDate} from "../tools/getDate";
 import {rootIP} from "../../info";
+import {useNavigate} from "react-router";
 
 function send(handlePrint) {
   webApi.updatePost('letter')
@@ -15,13 +16,15 @@ function send(handlePrint) {
 }
 
 
-export default function ModalSendOut(){
+export default function ModalSendOut({setIsLoading}) {
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
   const handleModalClose = () => setModalShow(false);
+  let navigate = useNavigate();
 
-  function sendDoc(){
+  function sendDoc() {
+    setIsLoading(true);
     // 確認送出公文
     const today = getDate().today;
     axios({
@@ -31,27 +34,34 @@ export default function ModalSendOut(){
         "sendDate": today
       }
     })
-      .then(res=> {
+      .then(res => {
+        setIsLoading(false);
         alert('送出成功');
-        window.history.back();
+        navigate('/out/print/' + today);
       })
-      .catch(err=>{
+      .catch(err => {
         console.error(err);
-        alert('送出失敗，請重試');
+        setModalShow(false);
+        setIsLoading(false);
+        if (err.response.status === 404) {
+          alert('沒有任何待送公文');
+        } else {
+          alert('處理失敗，請重試');
+        }
       })
   }
 
 
   return (
     <>
-      <MDBBtn color='success' className='ms-3 d-flex' size='sm' onClick={handleModalShow}>
+      <MDBBtn color='success' className='ms-auto d-flex' size='sm' onClick={handleModalShow}>
         <BsFillSendArrowUpFill className='me-1 my-auto'/>
         送出公文
       </MDBBtn>
       <Modal show={modalShow} onHide={handleModalClose}>
         <Alert variant='info' className='m-0'>
           <Alert.Heading>
-            <span className='fw-bolder'>是否確定送出今日公文？</span>
+            <span className='fw-bolder'>是否確定送出並列印今日送文簿？</span>
           </Alert.Heading>
           <p className='text-warning'>
             請再次核對待送清單是否與實際公文相同！<br/>
@@ -61,7 +71,7 @@ export default function ModalSendOut(){
           <hr/>
           <div className='d-flex justify-content-end'>
             <MDBBtn color='success' className='me-2' onClick={sendDoc}>確認送出</MDBBtn>
-            <MDBBtn color="secondary"  onClick={handleModalClose}>取消</MDBBtn>
+            <MDBBtn color="secondary" onClick={handleModalClose}>取消</MDBBtn>
           </div>
         </Alert>
       </Modal>

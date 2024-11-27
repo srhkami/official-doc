@@ -55,12 +55,13 @@ export default function OutManage() {
       <Row>
         <Col xs='12' className='mb-3 d-flex'>
           <ModalAddOut setIsLoading={setIsLoading}/>
-          <Link to='print/0' className="btn btn-sm btn-success ms-3 my-auto d-flex">
-            <MdEmail className='me-1 i-12 my-auto'/>
-            送公文作業</Link>
-          <Link to='history/1' className="btn btn-sm btn-secondary ms-auto my-auto d-flex">
+          {/*<Link to='print/0' className="btn btn-sm btn-success ms-3 my-auto d-flex">*/}
+          {/*  <MdEmail className='me-1 i-12 my-auto'/>*/}
+          {/*  送公文作業</Link>*/}
+          <ModalSendOut  setIsLoading={setIsLoading}/>
+          <Link to='history/1' className="btn btn-sm btn-secondary ms-3 my-auto d-flex">
             <MdOutlineHistory className='i-12 me-1 my-auto'/>
-            查閱歷史記錄
+            查閱送文記錄
           </Link>
         </Col>
         <Col xs='12'>

@@ -53,7 +53,7 @@ export default function InManage() {
         <Col xs='12' className='mb-3 d-flex'>
           <ModalAddIn setIsLoading={setIsLoading}/>
           <ModalReaded setIsLoading={setIsLoading}/>
-          <Link to='history' className="btn btn-sm btn-secondary ms-auto my-auto d-flex">
+          <Link to='history' className="btn btn-sm btn-secondary ms-3 my-auto d-flex">
             <MdOutlineHistory className='i-12 me-1 my-auto'/>
             查閱收文記錄
           </Link>

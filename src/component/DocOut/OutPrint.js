@@ -50,7 +50,6 @@ export default function OutPrint() {
           <IoMdPrint className='me-1 i-12 my-auto'/>
           列印
         </MDBBtn>
-        {date === '0' && <ModalSendOut/>}
       </Col>
       <Col xs='12' ref={contentRef} className='py-4'>
         <Card className='p-0 shadow-0 rounded-3'>
@@ -59,7 +58,7 @@ export default function OutPrint() {
               民興派出所送文簿
             </h3>
             <h4 className='fw-medium ms-auto my-auto'>
-              {date === '0' ? today : date}
+              {date}
             </h4>
           </Card.Header>
           <Card.Body>
@@ -79,7 +78,7 @@ export default function OutPrint() {
             </Table>
             <div className='text-secondary'>
               ※ 公文經簽收後，請妥善保存此表，以利事後檢閱。
-              {date !== '0' && `(此表為${getDate().today}重新列印)`}
+              {date !== today && `(此表為${getDate().today}重新列印)`}
             </div>
           </Card.Body>
         </Card>

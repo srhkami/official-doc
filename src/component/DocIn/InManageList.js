@@ -5,6 +5,8 @@ import * as webApi from '../WebApi'
 import {MDBBtn} from "mdb-react-ui-kit";
 import PropTypes from "prop-types";
 import ModalAssign from "../modals/ModalAssign";
+import {MdDeleteForever} from "react-icons/md";
+import ModalRemove from "../modals/ModalRemove";
 
 
 export default function InManageList({data, setIsLoading}) {
@@ -19,24 +21,17 @@ export default function InManageList({data, setIsLoading}) {
                 <div className='fw-bold text-primary'>{obj.number}</div>
                 <div className='text-secondary'>{obj.groupName}</div>
               </div>
-              <ModalAssign id={obj.id} setIsLoading={setIsLoading} username={obj.username}/>
+              <div className='d-flex mb-auto'>
+                <ModalAssign id={obj.id} setIsLoading={setIsLoading} username={obj.username}/>
+                <ModalRemove id={obj.id} setIsLoading={setIsLoading}/>
+              </div>
             </div>
             <div>{obj.title}</div>
           </Card.Body>
         </Card>
       </Col>
     )
-    // return (
-    //   <tr key={obj.id}>
-    //     <th scope="row">{obj.number}</th>
-    //     <td>{obj.groupName}</td>
-    //     <td>{obj.title}</td>
-    //     <td>{obj.username}</td>
-    //     <td>
-    //       <ModalAssign id={obj.id} setIsLoading={setIsLoading}/>
-    //     </td>
-    //   </tr>
-    // )
+
   })
   return <>{dataList}</>
 }

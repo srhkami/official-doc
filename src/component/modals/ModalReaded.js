@@ -32,7 +32,7 @@ export default function ModalReaded({setIsLoading}) {
 
   return (
     <>
-      <MDBBtn color='success' size='sm' className='ms-3 my-auto d-flex' onClick={handleModalShow}>
+      <MDBBtn color='success' size='sm' className='ms-auto my-auto d-flex' onClick={handleModalShow}>
         <FaCheckCircle className='me-1 i-10 my-auto'/>
         完成批閱
       </MDBBtn>

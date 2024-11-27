@@ -1,13 +1,26 @@
-import {NavLink,Link} from "react-router-dom";
-import {Container, Navbar} from "react-bootstrap";
+import {NavLink, Link} from "react-router-dom";
+import {MDBContainer, MDBNavbar, MDBNavbarToggler, MDBCollapse} from 'mdb-react-ui-kit';
+import {useState} from "react";
+import {FaBars} from "react-icons/fa";
+
 
 export default function Nav() {
+
+  const [openNav, setOpenNav] = useState(false);
+
   return (
-    <Navbar expand='lg' className='bg-body-tertiary'>
-      <Container fluid='xl'>
+    <MDBNavbar expand='lg' className='bg-body-tertiary sticky-top'>
+      <MDBContainer fluid>
         <Link to='/' className="navbar-brand fw-bolder">電子化收送公文簿</Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <MDBNavbarToggler
+          type='button'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+          onClick={() => setOpenNav(!openNav)}
+        >
+          <FaBars/>
+        </MDBNavbarToggler>
+        <MDBCollapse navbar open={openNav}>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink to='/out' className='nav-link'>送文 / 陳報</NavLink>
@@ -19,20 +32,8 @@ export default function Nav() {
               <NavLink to='/setting' className='nav-link'>系統設定</NavLink>
             </li>
           </ul>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  // <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-  //   <div className="container-fluid">
-  //
-  //     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-  //             data-bs-target="#navbarSupportedContent">
-  //       <span className="navbar-toggler-icon"></span>
-  //     </button>
-  //     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-  //
-  //     </div>
-  //     </div>
-  //   </nav>
+        </MDBCollapse>
+      </MDBContainer>
+    </MDBNavbar>
   )
 }

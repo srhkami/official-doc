@@ -89,7 +89,7 @@ export default function ModalAddIn({setIsLoading}) {
               <input
                 className='form-control'
                 type='text'
-                placeholder='請輸入陳報主旨'
+                placeholder='請輸入公文主旨'
                 {...register('title', {required: '請填寫此欄位'})}
               />
               <span className='text-danger f-07 fw-bolder'>{errors.title && errors.title.message}</span>

@@ -54,7 +54,6 @@ export default function PageTool({path, pageNumber, pageCount, showPages = 2}) {
     last = pageCount;
   }
   const list = Array.from({length: last - first + 1}, (v, i) => first + i);
-  console.log(list);
 
   const PageList = () => list.map(i => {
     return (

@@ -5,22 +5,20 @@ import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from 'prop-types';
 import {TiDelete} from "react-icons/ti";
+import {MdDeleteForever} from "react-icons/md";
 
-export default function ModalRevoke({id, setIsLoading}) {
-  // 用來撤銷送文
+export default function ModalRemove({id, setIsLoading}) {
+  // 用來刪除收文
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
   const handleModalClose = () => setModalShow(false);
 
-  function revoke() {
+  function remove() {
     setIsLoading(true);
     axios({
-      method: 'PATCH',
-      url: rootIP + '/doc/out/' + id + '/',
-      data: {
-        "status": 2
-      }
+      method: 'DELETE',
+      url: rootIP + '/doc/in/' + id + '/',
     }).then(res => {
       setIsLoading(false);
       setModalShow(false);
@@ -33,19 +31,17 @@ export default function ModalRevoke({id, setIsLoading}) {
 
   return (
     <>
-      <MDBBtn color='danger' outline size='sm' className='d-flex mb-auto' onClick={handleModalShow}>
-        <TiDelete className='i-12 me-1 my-auto'/>
-        撤銷
+      <MDBBtn color='danger' size='sm' outline className='ms-1 px-2 d-flex' onClick={handleModalShow}>
+        <MdDeleteForever className='i-15 my-aut'/>
       </MDBBtn>
       {modalShow &&
         <Modal show={modalShow} onHide={handleModalClose}>
           <Alert variant='info' className='m-0'>
-            <Alert.Heading>是否撤銷此公文？</Alert.Heading>
-            <p>若公文無法於當日送出，請點此撤銷。
-              <br/>若想重新送出此公文，請再次新增。</p>
+            <Alert.Heading>是否刪除此筆紀錄？</Alert.Heading>
+            <p>此操作無法復原。</p>
             <hr/>
             <div className='d-flex justify-content-end'>
-              <MDBBtn color="danger" className='me-2' onClick={revoke}>確定撤銷</MDBBtn>
+              <MDBBtn color="danger" className='me-2' onClick={remove}>確定刪除</MDBBtn>
               <MDBBtn color="secondary" onClick={handleModalClose}>取消</MDBBtn>
             </div>
           </Alert>
@@ -55,7 +51,7 @@ export default function ModalRevoke({id, setIsLoading}) {
   )
 }
 
-ModalRevoke.propTypes = {
+ModalRemove.propTypes = {
   id: PropTypes.number,
   setIsLoading: PropTypes.func,
 };
