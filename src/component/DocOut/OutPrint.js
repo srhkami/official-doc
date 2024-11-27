@@ -3,13 +3,10 @@ import {Button, Card, Col, Row, Table} from "react-bootstrap";
 import {Link, useParams} from "react-router-dom";
 import {useReactToPrint} from 'react-to-print'
 import OutPrintList from "./OutPrintList";
-// import Pdf from 'react-to-pdf'
-import ModalSendOut from "../modals/ModalSendOut";
 import {IoArrowBackOutline} from "react-icons/io5";
 import {IoMdPrint} from "react-icons/io";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {getDate} from "../tools/getDate";
-import * as webApi from "../WebApi";
 import axios from "axios";
 import {rootIP} from "../../info";
 

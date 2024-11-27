@@ -1,4 +1,4 @@
-import React, {useState,} from 'react';
+import React, {useContext, useState,} from 'react';
 import {Button, Col, Form, Modal} from "react-bootstrap";
 import * as webApi from '../WebApi'
 import {MDBBtn} from "mdb-react-ui-kit";
@@ -11,10 +11,14 @@ import PropTypes from "prop-types";
 import {getDate} from "../tools/getDate";
 import OptionsGroup from "../tools/OptionsGroup";
 import OptionsUser from "../tools/OptionsUser";
-
+import AuthContext from "../tools/AuthContext";
+import {useAxios} from "../tools/useAxios";
 
 
 export default function ModalAddOut({setIsLoading}) {
+
+  const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -23,14 +27,11 @@ export default function ModalAddOut({setIsLoading}) {
   const {
     register,
     handleSubmit,
-    watch,
-    setError,
-    setValue,
     formState: {errors},
   }
     = useForm();
 
-  const onSubmit = (formDate) => {
+  const onSubmit = (formData) => {
     setIsLoading(true);
     // 取得送文號
     axios({
@@ -40,12 +41,14 @@ export default function ModalAddOut({setIsLoading}) {
     })
       .then(res => {
           const number = Number(res.data);
-          formDate.number = number
+          formData.number = number;
+          formData['currentUser'] = userInfo.username;
           // 新增文章
-          axios({
+          api({
             method: 'post',
             url: rootIP + '/doc/out/',
-            data: formDate,
+            data: formData,
+            withCredentials: true,
           }).then(res => {
             setIsLoading(false);
             handleModalClose();
@@ -57,6 +60,8 @@ export default function ModalAddOut({setIsLoading}) {
               if (err.response.data.number) {
                 alert('取得送文號失敗，請重試');
                 // 這個還沒測試
+              } else {
+                alert('處理失敗，請重試')
               }
             })
         }

@@ -1,13 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
 import axios from "axios";
-import OutManageList from "./OutManageList";
 import {Button, Row, Col, Card, Dropdown, Form} from "react-bootstrap";
-import ModalAddOut from "../modals/ModalAddOut";
 import OutHistoryList from "./OutHistoryList";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {IoArrowBackOutline} from "react-icons/io5";
-import {IoMdPrint} from "react-icons/io";
 import {rootIP} from "../../info";
 import {MdOutlineHistory} from "react-icons/md";
 import ModalSelectDate from "../modals/ModalSelectDate";
@@ -20,7 +16,7 @@ export default function OutHistory() {
 
   const [data, setData] = useState([]);
   const [params, setParams]
-    = useState({page_size: 5, ordering: 'id'}); //傳給API的參數
+    = useState({page_size: 30, ordering: 'id'}); //傳給API的參數
   let {pageNumber} = useParams(); // 網址的頁碼參數
   const [pageCount, setPageCount] = useState({}) // 頁碼總數
 

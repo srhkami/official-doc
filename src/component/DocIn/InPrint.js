@@ -17,7 +17,6 @@ export default function InPrint() {
 
   const {date} = useParams()
 
-  const today = getDate().today
   const [data, setData] = useState([]);
   const contentRef = useRef(null);
 

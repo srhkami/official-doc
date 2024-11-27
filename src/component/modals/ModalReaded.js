@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Alert, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import axios from "axios";
@@ -6,9 +6,15 @@ import {rootIP} from "../../info";
 import PropTypes from 'prop-types';
 import {TiDelete} from "react-icons/ti";
 import {FaCheckCircle} from "react-icons/fa";
+import AuthContext from "../tools/AuthContext";
+import {useAxios} from "../tools/useAxios";
+import {getDate} from "../tools/getDate";
 
 export default function ModalReaded({setIsLoading}) {
   // 用來完成批閱
+
+  const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -16,9 +22,13 @@ export default function ModalReaded({setIsLoading}) {
 
   function readed() {
     setIsLoading(true);
-    axios({
-      method: 'GET',
+    api({
+      method: 'POST',
       url: rootIP + '/doc/read_doc/',
+      data: {
+        currentUser: userInfo.username,
+      },
+      withCredentials: true,
     }).then(res => {
       setIsLoading(false);
       handleModalClose();

@@ -1,4 +1,4 @@
-import React, {useEffect, useState,} from 'react';
+import React, {useContext, useEffect, useState,} from 'react';
 import {Col, Form, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
@@ -7,8 +7,13 @@ import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
 import {FaUserPlus} from "react-icons/fa";
+import AuthContext from "../tools/AuthContext";
+import {useAxios} from "../tools/useAxios";
 
 export default function ModalAddUser({setIsLoading}) {
+
+  const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -17,19 +22,18 @@ export default function ModalAddUser({setIsLoading}) {
   const {
     register,
     handleSubmit,
-    watch,
-    setError,
-    setValue,
     formState: {errors},
   }
     = useForm();
 
-  const onSubmit = (formDate) => {
+  const onSubmit = (formData) => {
     setIsLoading(true);
-    axios({
+    formData['currentUser'] = userInfo.username;
+    api({
       method: 'post',
       url: rootIP + '/doc/users/',
-      data: formDate,
+      data: formData,
+      withCredentials: true,
     }).then(res => {
       setIsLoading(false);
       handleModalClose();

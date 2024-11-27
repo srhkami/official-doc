@@ -4,20 +4,12 @@ import OutManageList from "./OutManageList";
 import {Button, Row, Col, Card, Dropdown, Form, Modal, Table} from "react-bootstrap";
 import ModalAddOut from "../modals/ModalAddOut";
 import ModalSendOut from "../modals/ModalSendOut";
-import {MDBBtn, MDBListGroup, MDBListGroupItem, MDBBadge} from "mdb-react-ui-kit";
-import {FaPlusCircle} from "react-icons/fa";
-import {BsFillSendArrowUpFill} from "react-icons/bs";
 import {MdOutlineHistory} from "react-icons/md";
-import {FaListCheck} from "react-icons/fa6";
 import axios from "axios";
 import {rootIP} from "../../info";
 import ModalLoading from "../modals/ModalLoading";
-import {MdEmail} from "react-icons/md";
-import { MdDelete } from "react-icons/md";
-import { TiDelete  } from "react-icons/ti";
 
 export default function OutManage() {
-
 
   const [data, setData] = useState([]);
   const [params, setParams]
@@ -55,9 +47,6 @@ export default function OutManage() {
       <Row>
         <Col xs='12' className='mb-3 d-flex'>
           <ModalAddOut setIsLoading={setIsLoading}/>
-          {/*<Link to='print/0' className="btn btn-sm btn-success ms-3 my-auto d-flex">*/}
-          {/*  <MdEmail className='me-1 i-12 my-auto'/>*/}
-          {/*  送公文作業</Link>*/}
           <ModalSendOut  setIsLoading={setIsLoading}/>
           <Link to='history/1' className="btn btn-sm btn-secondary ms-3 my-auto d-flex">
             <MdOutlineHistory className='i-12 me-1 my-auto'/>
@@ -97,47 +86,7 @@ export default function OutManage() {
               </div>
             </Card.Header>
             <Card.Body className='row'>
-              {/*<Table hover>*/}
-              {/*  <thead>*/}
-              {/*  <tr>*/}
-              {/*    <th scope="col">送文號</th>*/}
-              {/*    <th scope="col">組別</th>*/}
-              {/*    <th scope="col">主旨</th>*/}
-              {/*    <th scope="col">承辦人</th>*/}
-              {/*    <th scope="col">操作</th>*/}
-              {/*  </tr>*/}
-              {/*  </thead>*/}
-              {/*  <tbody>*/}
-              {/*    <OutManageList data={data} setIsLoading={setIsLoading}/>*/}
-              {/*  </tbody>*/}
-              {/*</Table>*/}
-
-              {/*<MDBListGroup style={{minWidth: '22rem'}} light>*/}
-              {/*  <MDBListGroupItem className='d-flex justify-content-between align-items-center'>*/}
-              {/*    <div>*/}
-              {/*      <div className='fw-bold text-primary'>113110001</div>*/}
-              {/*      <div className='text-secondary'>王小明（一組）</div>*/}
-              {/*      <div className=''>這是測試主旨的內容</div>*/}
-              {/*    </div>*/}
-              {/*    <MDBBtn color='danger' outline size='sm'>*/}
-              {/*      撤銷*/}
-              {/*    </MDBBtn>*/}
-              {/*  </MDBListGroupItem>*/}
-              {/*  <MDBListGroupItem className='d-flex justify-content-between align-items-center'>*/}
-              {/*    <div>*/}
-              {/*      <div className='fw-bold text-primary'>113110001</div>*/}
-              {/*      <div className='text-secondary'>王小明（一組）</div>*/}
-              {/*      <div className=''>這是測試主旨的內容</div>*/}
-              {/*    </div>*/}
-              {/*    <MDBBtn color='danger' outline size='sm'>*/}
-              {/*      撤銷*/}
-              {/*    </MDBBtn>*/}
-              {/*  </MDBListGroupItem>*/}
-              {/*</MDBListGroup>*/}
-
-              {/*<Row>*/}
                 <OutManageList data={data} setIsLoading={setIsLoading}/>
-              {/*</Row>*/}
             </Card.Body>
 
           </Card>

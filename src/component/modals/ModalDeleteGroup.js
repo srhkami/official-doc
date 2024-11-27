@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Alert, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from 'prop-types';
+import AuthContext from "../tools/AuthContext";
+import {useAxios} from "../tools/useAxios";
 
 export default function ModalDeleteGroup({id,setIsLoading}) {
-  // 用來撤銷送文
+  // 用來刪除業務組
+const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -14,9 +18,13 @@ export default function ModalDeleteGroup({id,setIsLoading}) {
 
     const deleteGroup = () => {
     setIsLoading(true);
-    axios({
+    api({
       method: 'DELETE',
       url: rootIP + `/doc/groups/${id}/`,
+      data:{
+        currentUser: userInfo.username,
+      },
+      withCredentials: true,
     }).then(res => {
       setIsLoading(false);
       setModalShow(false);

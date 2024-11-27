@@ -6,9 +6,14 @@ import {useForm} from "react-hook-form";
 import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
-import {FaUserPlus} from "react-icons/fa";
+import {useContext} from "react"
+import AuthContext from "../tools/AuthContext"
+import {useAxios} from "../tools/useAxios";
 
 export default function ModalAddGroup({setIsLoading}) {
+
+  const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -21,12 +26,14 @@ export default function ModalAddGroup({setIsLoading}) {
   }
     = useForm();
 
-  const onSubmit = (formDate) => {
+  const onSubmit = (formData) => {
     setIsLoading(true);
-    axios({
+    formData['currentUser'] = userInfo.username;
+    api({
       method: 'post',
       url: rootIP + '/doc/groups/',
-      data: formDate,
+      data: formData,
+      withCredentials: true,
     }).then(res => {
       setIsLoading(false);
       handleModalClose();

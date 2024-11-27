@@ -92,20 +92,6 @@ export default function InManage() {
             </Card.Header>
             <Card.Body className='row'>
               <InManageList data={data} setIsLoading={setIsLoading}/>
-              {/*<Table hover>*/}
-              {/*  <thead>*/}
-              {/*  <tr>*/}
-              {/*    <th scope="col">發文字號</th>*/}
-              {/*    <th scope="col">組別</th>*/}
-              {/*    <th scope="col">主旨</th>*/}
-              {/*    <th scope="col">承辦人</th>*/}
-              {/*    <th scope="col">操作</th>*/}
-              {/*  </tr>*/}
-              {/*  </thead>*/}
-              {/*  <tbody>*/}
-              {/*    <InManageList data={data} setIsLoading={setIsLoading}/>*/}
-              {/*  </tbody>*/}
-              {/*</Table>*/}
             </Card.Body>
             <Card.Footer>
               <div className='text-warning'>※ 完成本日公文批閱後，務必點擊上方「完成批閱」</div>

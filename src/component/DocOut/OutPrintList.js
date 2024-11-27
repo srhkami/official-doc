@@ -1,8 +1,3 @@
-import React, {useEffect, useState} from "react";
-import * as webApi from "../WebApi";
-import {Button} from "react-bootstrap";
-import ModalRevoke from "../modals/ModalRevoke";
-
 export default function OutPrintList({data}) {
 
   return (

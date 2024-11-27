@@ -1,13 +1,18 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Alert, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from 'prop-types';
 import {TiDelete} from "react-icons/ti";
+import AuthContext from "../tools/AuthContext";
+import {useAxios} from "../tools/useAxios";
 
 export default function ModalRevoke({id, setIsLoading}) {
   // 用來撤銷送文
+
+  const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -15,12 +20,14 @@ export default function ModalRevoke({id, setIsLoading}) {
 
   function revoke() {
     setIsLoading(true);
-    axios({
+    api({
       method: 'PATCH',
       url: rootIP + '/doc/out/' + id + '/',
       data: {
-        "status": 2
-      }
+        status: 2,
+        currentUser: userInfo.username,
+      },
+      withCredentials: true,
     }).then(res => {
       setIsLoading(false);
       setModalShow(false);

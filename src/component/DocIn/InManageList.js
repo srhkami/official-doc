@@ -1,13 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {Button, Card, Col} from "react-bootstrap";
-import ModalRevoke from "../modals/ModalRevoke";
-import * as webApi from '../WebApi'
-import {MDBBtn} from "mdb-react-ui-kit";
+import {Card, Col} from "react-bootstrap";
 import PropTypes from "prop-types";
 import ModalAssign from "../modals/ModalAssign";
-import {MdDeleteForever} from "react-icons/md";
 import ModalRemove from "../modals/ModalRemove";
-
 
 export default function InManageList({data, setIsLoading}) {
 

@@ -1,6 +1,5 @@
-import React, {useState,} from 'react';
-import {Button, Col, Form, Modal} from "react-bootstrap";
-import * as webApi from '../WebApi'
+import React, {useContext, useState,} from 'react';
+import {Col, Form, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
@@ -8,11 +7,16 @@ import {BsEnvelopePlusFill} from "react-icons/bs";
 import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
-import ModalRevoke from "./ModalRevoke";
 import {getDate} from "../tools/getDate";
+import AuthContext from "../tools/AuthContext";
+import {useAxios} from "../tools/useAxios";
 
 
 export default function ModalAddIn({setIsLoading}) {
+
+  const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
+
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -21,20 +25,19 @@ export default function ModalAddIn({setIsLoading}) {
   const {
     register,
     handleSubmit,
-    watch,
-    setError,
-    setValue,
     formState: {errors},
   }
     = useForm();
 
-  const onSubmit = (formDate) => {
+  const onSubmit = (formData) => {
     setIsLoading(true);
-    formDate['receiveDate'] = getDate().today;
-    axios({
+    formData['receiveDate'] = getDate().today;
+    formData['currentUser'] = userInfo.username;
+    api({
       method: 'post',
       url: rootIP + '/doc/in/',
-      data: formDate,
+      data: formData,
+      withCredentials: true,
     }).then(res => {
       setIsLoading(false);
       handleModalClose();

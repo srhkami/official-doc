@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link} from "react-router-dom";
 import {Modal, Alert} from "react-bootstrap";
 import * as webApi from "../WebApi";
@@ -9,6 +9,8 @@ import axios from "axios";
 import {getDate} from "../tools/getDate";
 import {rootIP} from "../../info";
 import {useNavigate} from "react-router";
+import AuthContext from "../tools/AuthContext";
+import {useAxios} from "../tools/useAxios";
 
 function send(handlePrint) {
   webApi.updatePost('letter')
@@ -17,6 +19,9 @@ function send(handlePrint) {
 
 
 export default function ModalSendOut({setIsLoading}) {
+
+    const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -27,12 +32,14 @@ export default function ModalSendOut({setIsLoading}) {
     setIsLoading(true);
     // 確認送出公文
     const today = getDate().today;
-    axios({
-      method: 'GET',
+    api({
+      method: 'POST',
       url: rootIP + '/doc/send_doc/',
-      params: {
-        "sendDate": today
-      }
+      data: {
+        "sendDate": today,
+        currentUser: userInfo.username,
+      },
+      withCredentials: true,
     })
       .then(res => {
         setIsLoading(false);

@@ -18,7 +18,7 @@ export default function InHistory() {
 
   const [data, setData] = useState([]);
   const [params, setParams]
-    = useState({page_size: 5, ordering: 'id'}); //傳給API的參數
+    = useState({page_size: 30, ordering: 'id'}); //傳給API的參數
   let {pageNumber} = useParams(); // 網址的頁碼參數
   const [pageCount, setPageCount] = useState({}) // 頁碼總數
 

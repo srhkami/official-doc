@@ -1,4 +1,4 @@
-import React, {useEffect, useState,} from 'react';
+import React, {useContext, useEffect, useState,} from 'react';
 import {ButtonGroup, Col, Form, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
@@ -7,8 +7,13 @@ import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
 import {FaUserPlus} from "react-icons/fa";
+import AuthContext from "../tools/AuthContext";
+import {useAxios} from "../tools/useAxios";
 
 export default function ModalEditUser({id, setIsLoading}) {
+
+  const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -19,9 +24,6 @@ export default function ModalEditUser({id, setIsLoading}) {
   const {
     register,
     handleSubmit,
-    watch,
-    setError,
-    setValue,
     formState: {errors},
   }
     = useForm({
@@ -40,14 +42,17 @@ export default function ModalEditUser({id, setIsLoading}) {
       })
   }, []);
 
-  const onSubmit = (formDate) => {
+  const onSubmit = (formData) => {
     setIsLoading(true);
-    axios({
+    formData['currentUser'] = userInfo.username;
+    api({
       method: 'put',
       url: rootIP + `/doc/users/${id}/`,
-      data: formDate,
+      data: formData,
+      withCredentials: true,
     }).then(res => {
       setIsLoading(false);
+      setModalShow(false);
       handleModalClose();
     })
       .catch(err => {
@@ -58,11 +63,16 @@ export default function ModalEditUser({id, setIsLoading}) {
 
   const deleteUser = () => {
     setIsLoading(true);
-    axios({
+    api({
       method: 'DELETE',
       url: rootIP + `/doc/users/${id}/`,
+      data: {
+        currentUser: userInfo.username,
+      },
+      withCredentials: true,
     }).then(res => {
       setIsLoading(false);
+      setModalShow(false);
       handleModalClose();
     })
       .catch(err => {

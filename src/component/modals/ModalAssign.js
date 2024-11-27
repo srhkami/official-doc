@@ -1,5 +1,5 @@
 import {MDBBtn} from "mdb-react-ui-kit";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Col, Form, Modal, Table} from "react-bootstrap";
 import {getDate} from "../tools/getDate";
 import {useForm} from "react-hook-form";
@@ -11,9 +11,13 @@ import axios from "axios";
 import {rootIP} from "../../info";
 import { BiSolidSelectMultiple } from "react-icons/bi";
 import { TbCopy,TbCopyCheckFilled  } from "react-icons/tb";
+import AuthContext from "../tools/AuthContext";
+import {useAxios} from "../tools/useAxios";
 
 export default function ModalAssign({id, setIsLoading, username}) {
   // 用來分派承辦人
+  const {userInfo} = useContext(AuthContext);
+  let api = useAxios();
 
   const [modalShow, setModalShow] = useState(false);
   const handleModalShow = () => setModalShow(true);
@@ -38,13 +42,15 @@ export default function ModalAssign({id, setIsLoading, username}) {
 
   const assigan = (username) => {
     setIsLoading(true);
-    axios({
+    api({
       method: 'PATCH',
       url: rootIP + `/doc/in/${id}/`,
       data: {
         username: username,
         readDate: getDate().today,
+        currentUser: userInfo.username,
       },
+      withCredentials: true,
     })
       .then(res => {
         setIsLoading(false);
