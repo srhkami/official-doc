@@ -27,7 +27,7 @@ export default function Nav() {
               <NavLink to='/out' className='nav-link'>送文 / 陳報</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to='/in' className='nav-link'>收文 / 審批</NavLink>
+              <NavLink to='/in' className='nav-link'>收文 / 批閱</NavLink>
             </li>
             <li className="nav-item">
               <NavLink to='/setting' className='nav-link'>系統設定</NavLink>

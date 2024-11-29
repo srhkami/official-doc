@@ -63,7 +63,7 @@ export default function ModalSendOut({setIsLoading}) {
           <p className='text-warning'>
             請再次核對待送清單是否與實際公文相同！<br/>
             送出後，此頁紀錄將不可再更改；<br/>
-            如需重新列印，請至「歷史紀錄→列印歷史送文簿」
+            如需重新列印，請至「送文紀錄→列印歷史送文簿」
           </p>
           <hr/>
           <div className='d-flex justify-content-end'>
