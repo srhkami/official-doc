@@ -49,8 +49,8 @@ export default function Login() {
 
   return (
     <Row>
-      <Col xs={12} md={6} xl={4} className='d-flex mx-auto'>
-        <Card className='mx-auto'>
+      <Col xs={12} sm={10} md={6} xl={4} className='d-flex mx-auto'>
+        <Card className='w-100'>
           <Card.Header className='d-flex'>
             <h3 className="fw-bolder text-primary mx-auto my-auto">登入</h3>
           </Card.Header>
