@@ -46,7 +46,8 @@ const routes = createBrowserRouter([
         path: 'history',
         element: <InHistory/>
       },
-      {path: 'print/:date',
+      {
+        path: 'print/:date',
         element: <InPrint/>,
       }
     ],
@@ -55,7 +56,7 @@ const routes = createBrowserRouter([
     path: '/setting',
     element: <Base content={<Setting/>}/>,
   },
-    {
+  {
     path: '/login',
     element: <Base content={<Login/>}/>,
   },

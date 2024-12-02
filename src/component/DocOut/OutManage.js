@@ -57,9 +57,9 @@ export default function OutManage() {
           <Card className='p-0 shadow-lg rounded-0 bg-body-tertiary'>
             <Card.Header className='d-flex'>
               {/*<FaListCheck className='me-2 my-auto i-15' color='#3B71CA'/>*/}
-              <h3 className="fw-bolder m-0 my-auto">
+              <h4 className="fw-bolder m-0 my-auto">
                 待送公文
-              </h3>
+              </h4>
               <div className="ms-auto d-flex">
                 <Form className='my-auto' onSubmit={searchStart}>
                   <Form.Control type='text' name='keyword' placeholder='搜尋' size='sm' style={{width:150}}/>

@@ -13,7 +13,6 @@ import {useParams} from "react-router-dom";
 
 export default function OutHistory() {
 
-
   const [data, setData] = useState([]);
   const [params, setParams]
     = useState({page_size: 30, ordering: 'id'}); //傳給API的參數

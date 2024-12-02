@@ -39,7 +39,7 @@ export default function ModalRemove({id, setIsLoading}) {
   return (
     <>
       <MDBBtn color='danger' size='sm' outline className='ms-1 px-2 d-flex' onClick={handleModalShow}>
-        <MdDeleteForever className='i-15 my-aut'/>
+        <MdDeleteForever className='i-15 my-auto'/>
       </MDBBtn>
       {modalShow &&
         <Modal show={modalShow} onHide={handleModalClose}>

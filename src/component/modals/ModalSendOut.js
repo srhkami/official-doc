@@ -48,7 +48,6 @@ export default function ModalSendOut({setIsLoading}) {
       })
   }
 
-
   return (
     <>
       <MDBBtn color='success' className='ms-auto d-flex' size='sm' onClick={handleModalShow}>
@@ -60,11 +59,16 @@ export default function ModalSendOut({setIsLoading}) {
           <Alert.Heading>
             <span className='fw-bolder'>是否確定送出並列印今日送文簿？</span>
           </Alert.Heading>
-          <p className='text-warning'>
-            請再次核對待送清單是否與實際公文相同！<br/>
-            送出後，此頁紀錄將不可再更改；<br/>
-            如需重新列印，請至「歷史紀錄→列印歷史送文簿」
+          <p className='m-2'>
+            送公文流程：
           </p>
+          <ol className=''>
+            <li>幫忙新增同仁忘記取號之公文</li>
+            <li>逐一勾選核對公文</li>
+            <li>使用電腦版網頁送出並列印</li>
+            <li>如需重新列印，請至「送文紀錄→列印歷史送文簿」</li>
+
+          </ol>
           <hr/>
           <div className='d-flex justify-content-end'>
             <MDBBtn color='success' className='me-2' onClick={sendDoc}>確認送出</MDBBtn>

@@ -1,6 +1,7 @@
 import {Card, Col} from "react-bootstrap";
 import ModalRevoke from "../modals/ModalRevoke";
 import PropTypes from "prop-types";
+import ModalCheck from "../modals/ModalCheck";
 
 export default function OutManageList({data, setIsLoading}) {
 
@@ -13,10 +14,13 @@ export default function OutManageList({data, setIsLoading}) {
               <div>
                 <div className='fw-bold text-primary'>{obj.number}</div>
                 <div className='text-secondary'>{obj.username}（{obj.groupName}）</div>
-                <div className=''>{obj.title}</div>
               </div>
+              <div className='d-flex mb-auto'>
+              <ModalCheck id={obj.id} checked={obj.checked} setIsLoading={setIsLoading}/>
               <ModalRevoke id={obj.id} setIsLoading={setIsLoading}/>
+                </div>
             </div>
+            <div className=''>{obj.title}</div>
           </Card.Body>
         </Card>
       </Col>

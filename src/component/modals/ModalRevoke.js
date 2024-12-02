@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {TiDelete} from "react-icons/ti";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";
+import {MdDeleteForever} from "react-icons/md";
 
 export default function ModalRevoke({id, setIsLoading}) {
   // 用來撤銷送文
@@ -39,16 +40,15 @@ export default function ModalRevoke({id, setIsLoading}) {
 
   return (
     <>
-      <MDBBtn color='danger' outline size='sm' className='d-flex mb-auto' onClick={handleModalShow}>
-        <TiDelete className='i-12 me-1 my-auto'/>
-        撤銷
+      <MDBBtn color='danger' outline size='sm' className='d-flex ms-1' onClick={handleModalShow}>
+        <MdDeleteForever className='i-15 my-auto'/>
       </MDBBtn>
       {modalShow &&
         <Modal show={modalShow} onHide={handleModalClose}>
           <Alert variant='info' className='m-0'>
             <Alert.Heading>是否撤銷此公文？</Alert.Heading>
-            <p>若公文無法於當日送出，請點此撤銷。
-              <br/>若想重新送出此公文，請再次新增。</p>
+            <p>若此公文無法送出，請點此撤銷。
+              <br/>若想重新送出原公文，請重新取號</p>
             <hr/>
             <div className='d-flex justify-content-end'>
               <MDBBtn color="danger" className='me-2' onClick={revoke}>確定撤銷</MDBBtn>
