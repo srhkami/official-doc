@@ -16,7 +16,7 @@ export default function OutManageList({data, setIsLoading}) {
                 <div className='text-secondary'>{obj.username}（{obj.groupName}）</div>
               </div>
               <div className='d-flex mb-auto'>
-              <ModalCheck id={obj.id} checked={obj.checked} setIsLoading={setIsLoading}/>
+              {/*<ModalCheck id={obj.id} checked={obj.checked} setIsLoading={setIsLoading}/>*/}
               <ModalRevoke id={obj.id} setIsLoading={setIsLoading}/>
                 </div>
             </div>

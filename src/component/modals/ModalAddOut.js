@@ -26,6 +26,7 @@ export default function ModalAddOut({setIsLoading}) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: {errors},
   }
     = useForm();
@@ -50,7 +51,8 @@ export default function ModalAddOut({setIsLoading}) {
             withCredentials: true,
           }).then(res => {
             setIsLoading(false);
-            handleModalClose();
+            reset();
+            // handleModalClose();
             alert(`新增成功！送文編號為【 ${number} 】`);
           })
             .catch(err => {

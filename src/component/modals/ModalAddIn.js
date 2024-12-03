@@ -24,6 +24,7 @@ export default function ModalAddIn({setIsLoading}) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: {errors},
   }
     = useForm();
@@ -32,6 +33,7 @@ export default function ModalAddIn({setIsLoading}) {
     setIsLoading(true);
     formData['receiveDate'] = getDate().today;
     formData['currentUser'] = userInfo.username;
+    setIsLoading(false);
     api({
       method: 'post',
       url: rootIP + '/doc/in/',
@@ -39,7 +41,8 @@ export default function ModalAddIn({setIsLoading}) {
       withCredentials: true,
     }).then(res => {
       setIsLoading(false);
-      handleModalClose();
+      reset();
+      // handleModalClose();
       alert('新增成功！');
     })
       .catch(err => {

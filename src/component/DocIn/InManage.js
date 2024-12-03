@@ -8,6 +8,7 @@ import ModalLoading from "../modals/ModalLoading";
 import InManageList from "./InManageList";
 import ModalAddIn from "../modals/ModalAddIn";
 import ModalReaded from "../modals/ModalReaded";
+import InManageListPc from "./InManageListPc";
 
 export default function InManage() {
 
@@ -85,8 +86,14 @@ export default function InManage() {
                 </Dropdown>
               </div>
             </Card.Header>
-            <Card.Body className='row'>
-              <InManageList data={data} setIsLoading={setIsLoading}/>
+            <Card.Body>
+              <Row className='d-md-none'>
+                <InManageList data={data} setIsLoading={setIsLoading}/>
+              </Row>
+              <Row className='d-none d-md-block'>
+                <InManageListPc data={data} setIsLoading={setIsLoading}/>
+              </Row>
+
             </Card.Body>
             <Card.Footer>
               <div className='text-warning'>※ 完成本日公文批閱後，務必點擊上方「完成批閱」</div>

@@ -8,12 +8,14 @@ import {MdOutlineHistory} from "react-icons/md";
 import axios from "axios";
 import {rootIP} from "../../info";
 import ModalLoading from "../modals/ModalLoading";
+import ModalNotice from "../modals/ModalNotice";
+import OutManageListPc from "./OutManageListPc";
 
 export default function OutManage() {
 
   const [data, setData] = useState([]);
   const [params, setParams]
-    = useState({status: 0, ordering: '-number'}); //傳給API的參數
+    = useState({status: 0, ordering: '-group'}); //傳給API的參數
   const [isLoading, setIsLoading] = useState(false); // 是否為載入中的狀態
 
   useEffect(() => {
@@ -43,6 +45,7 @@ export default function OutManage() {
 
   return (
     <>
+      <ModalNotice/>
       <ModalLoading show={isLoading} setShow={setIsLoading}/>
       <Row>
         <Col xs='12' className='mb-3 d-flex'>
@@ -85,8 +88,13 @@ export default function OutManage() {
                 </Dropdown>
               </div>
             </Card.Header>
-            <Card.Body className='row'>
+            <Card.Body>
+              <Row className='d-md-none'>
                 <OutManageList data={data} setIsLoading={setIsLoading}/>
+                </Row>
+              <Row className='d-none d-md-block'>
+                <OutManageListPc data={data} setIsLoading={setIsLoading}/>
+              </Row>
             </Card.Body>
 
           </Card>
