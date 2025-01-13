@@ -1,7 +1,7 @@
 import {Card, Col} from "react-bootstrap";
-import ModalRevoke from "../modals/ModalRevoke";
+import ModalRevoke from "./ModalRevoke";
 import PropTypes from "prop-types";
-import ModalCheck from "../modals/ModalCheck";
+
 
 export default function OutManageList({data, setIsLoading}) {
 

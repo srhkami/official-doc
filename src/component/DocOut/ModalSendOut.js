@@ -7,6 +7,7 @@ import {rootIP} from "../../info";
 import {useNavigate} from "react-router-dom";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";
+import {toast} from 'react-toastify';
 
 export default function ModalSendOut({setIsLoading}) {
 
@@ -33,7 +34,7 @@ export default function ModalSendOut({setIsLoading}) {
     })
       .then(res => {
         setIsLoading(false);
-        alert('送出成功');
+        toast.success('送出成功');
         navigate('/out/print/' + today);
       })
       .catch(err => {
@@ -41,9 +42,9 @@ export default function ModalSendOut({setIsLoading}) {
         setModalShow(false);
         setIsLoading(false);
         if (err.response.status === 404) {
-          alert('沒有任何待送公文');
+          toast.warn('沒有任何待送公文');
         } else {
-          alert('處理失敗，請重試');
+          toast.error('處理失敗，請重試');
         }
       })
   }

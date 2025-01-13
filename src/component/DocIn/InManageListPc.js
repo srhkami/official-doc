@@ -1,8 +1,8 @@
 import {Card, Col, Table} from "react-bootstrap";
 import PropTypes from "prop-types";
-import ModalAssign from "../modals/ModalAssign";
-import ModalRemove from "../modals/ModalRemove";
-import ModalRevoke from "../modals/ModalRevoke";
+import ModalAssign from "./ModalAssign";
+import ModalRemove from "./ModalRemove";
+import ModalRevoke from "../DocOut/ModalRevoke";
 import React from "react";
 
 export default function InManageListPc({data, setIsLoading}) {

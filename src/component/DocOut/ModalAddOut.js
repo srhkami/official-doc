@@ -1,10 +1,9 @@
-import {useContext, useState,} from 'react';
+import React, {useContext, useState,} from 'react';
 import {Col, Form, Modal} from "react-bootstrap";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {FaPlusCircle} from "react-icons/fa";
 import {useForm} from "react-hook-form";
 import {BsFillSendPlusFill} from "react-icons/bs";
-import axios from "axios";
 import {rootIP} from "../../info";
 import PropTypes from "prop-types";
 import {getDate} from "../tools/getDate";
@@ -12,6 +11,7 @@ import OptionsGroup from "../tools/OptionsGroup";
 import OptionsUser from "../tools/OptionsUser";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";
+import {toast} from 'react-toastify';
 
 
 export default function ModalAddOut({setIsLoading}) {
@@ -26,51 +26,102 @@ export default function ModalAddOut({setIsLoading}) {
   const {
     register,
     handleSubmit,
-    reset,
+    setValue,
     formState: {errors},
   }
     = useForm();
 
-  const onSubmit = (formData) => {
-    setIsLoading(true);
-    // 取得送文號
-    axios({
+  const getOutNumber = async () => {
+    const res = await api({
       method: 'get',
       url: rootIP + '/doc/get_number/',
       params: {ym: getDate().ym},
     })
-      .then(res => {
-          const number = Number(res.data);
-          formData.number = number;
-          formData['currentUser'] = userInfo.username;
-          // 新增文章
-          api({
-            method: 'post',
-            url: rootIP + '/doc/out/',
-            data: formData,
-            withCredentials: true,
-          }).then(res => {
+    return res.data
+  }// 取得送文號
+
+
+  const addOutDoc =
+    async (formData) => {
+      return api({
+        method: 'post',
+        url: rootIP + '/doc/out/',
+        data: formData,
+        withCredentials: true,
+      });
+    }// 新增送文
+
+  const onSubmit = (formData) => {
+    setIsLoading(true);
+    getOutNumber()
+      .then(number => {
+        formData.number = number;
+        formData['currentUser'] = userInfo.username;
+        addOutDoc(formData)
+          .then(res => {
             setIsLoading(false);
-            reset();
-            // handleModalClose();
-            alert(`新增成功！送文編號為【 ${number} 】`);
+            setValue('number', '')
+            setValue('username', '')
+            setValue('title', '')
+            toast.success("新增成功");
           })
-            .catch(err => {
-              setIsLoading(false);
-              console.log(err)
-              if (err.response.data.number) {
-                alert('取得送文號失敗，請重試');
-                // 這個還沒測試
-              } else {
-                alert('處理失敗，請重試')
-              }
-            })
-        }
-      )
+          .catch(err => console.log(err));
+      })
       .catch(err => {
-        console.log(err);
+        setIsLoading(false);
+        console.log(err)
+        if (err.response.data.number) {
+          toast.error('取得送文號失敗，請重試');
+        } else {
+          toast.error('處理失敗，請重試')
+        }
       })
   }
+
+
+  // const onSubmit = (formData) => {
+  //   setIsLoading(true);
+  //   toast.loading('處理中，請稍後……');
+  //   // 取得送文號
+  //   axios({
+  //     method: 'get',
+  //     url: rootIP + '/doc/get_number/',
+  //     params: {ym: getDate().ym},
+  //   })
+  //     .then(res => {
+  //         const number = Number(res.data);
+  //         formData.number = number;
+  //         formData['currentUser'] = userInfo.username;
+  //         toast.dismiss();
+  //         toast.success("新增成功！");
+  //
+  //         新增送文
+  //         api({
+  //           method: 'post',
+  //           url: rootIP + '/doc/out/',
+  //           data: formData,
+  //           withCredentials: true,
+  //         }).then(res => {
+  //           setIsLoading(false);
+  //           setValue('number', '')
+  //           setValue('groupName', '')
+  //           alert(`新增成功！送文編號為【 ${number} 】`);
+  //         }).catch(err => {
+  //           setIsLoading(false);
+  //           console.log(err)
+  //           if (err.response.data.number) {
+  //             alert('取得送文號失敗，請重試');
+  //             // 這個還沒測試
+  //           } else {
+  //             alert('處理失敗，請重試')
+  //           }
+  //         })
+  //       }
+  //     )
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }
 
   return (
     <>

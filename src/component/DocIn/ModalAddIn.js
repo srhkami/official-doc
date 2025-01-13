@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import {getDate} from "../tools/getDate";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";
-
+import {toast} from "react-toastify";
 
 export default function ModalAddIn({setIsLoading}) {
 
@@ -24,7 +24,7 @@ export default function ModalAddIn({setIsLoading}) {
   const {
     register,
     handleSubmit,
-    reset,
+    setValue,
     formState: {errors},
   }
     = useForm();
@@ -41,12 +41,13 @@ export default function ModalAddIn({setIsLoading}) {
       withCredentials: true,
     }).then(res => {
       setIsLoading(false);
-      reset();
-      // handleModalClose();
-      alert('新增成功！');
+      setValue('number', '');
+      setValue('title', '');
+      toast.success('新增成功');
     })
       .catch(err => {
         setIsLoading(false);
+        toast.error('處理失敗，請重試')
         console.log(err)
       })
   }

@@ -6,8 +6,8 @@ import axios from "axios";
 import {rootIP} from "../../info";
 import ModalLoading from "../modals/ModalLoading";
 import InManageList from "./InManageList";
-import ModalAddIn from "../modals/ModalAddIn";
-import ModalReaded from "../modals/ModalReaded";
+import ModalAddIn from "./ModalAddIn";
+import ModalReaded from "./ModalReaded";
 import InManageListPc from "./InManageListPc";
 
 export default function InManage() {
@@ -17,17 +17,37 @@ export default function InManage() {
     = useState({status: 0, ordering: 'groupName'}); //傳給API的參數
   const [isLoading, setIsLoading] = useState(false); // 是否為載入中的狀態
 
-  useEffect(() => {
-    axios({
-      method: 'GET',
+  const requestData = async () => {
+    const res = await axios({
+      method: 'get',
       url: rootIP + '/doc/in/',
+      withCredentials: true,
       params: params,
     })
-      .then(res => {
-        setData(res.data.results);
+    return res.data
+  }// 從API取得資料，並回傳資料的值
+
+  // 取得所有資料，監聽參數及頁數變化，如有變化全部刷新
+  useEffect(() => {
+    setData([]);
+    requestData()
+      .then((data) => {
+        setData(data.results);
       })
-      .catch(err => console.log(err))
-  }, [params, isLoading]);
+      .catch(err => console.log(err));
+  }, [isLoading, params])
+
+  // useEffect(() => {
+  //   axios({
+  //     method: 'GET',
+  //     url: rootIP + '/doc/in/',
+  //     params: params,
+  //   })
+  //     .then(res => {
+  //       setData(res.data.results);
+  //     })
+  //     .catch(err => console.log(err))
+  // }, [params, isLoading]);
 
   const searchStart = (e) => {
     // 關鍵字搜尋
@@ -49,7 +69,7 @@ export default function InManage() {
         <Col xs='12' className='mb-3 d-flex'>
           <ModalAddIn setIsLoading={setIsLoading}/>
           <ModalReaded setIsLoading={setIsLoading}/>
-          <Link to='history' className="btn btn-sm btn-secondary ms-3 my-auto d-flex">
+          <Link to='history/1' className="btn btn-sm btn-secondary ms-3 my-auto d-flex">
             <MdOutlineHistory className='i-12 me-1 my-auto'/>
             查閱收文記錄
           </Link>

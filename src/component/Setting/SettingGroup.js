@@ -4,8 +4,8 @@ import axios from "axios";
 import {rootIP} from "../../info";
 import ModalLoading from "../modals/ModalLoading";
 import {HiMiniRectangleGroup} from "react-icons/hi2";
-import ModalAddGroup from "../modals/ModalAddGroup";
-import ModalDeleteGroup from "../modals/ModalDeleteGroup";
+import ModalAddGroup from "./ModalAddGroup";
+import ModalDeleteGroup from "./ModalDeleteGroup";
 
 
 export default function SettingGroup() {

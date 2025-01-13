@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef} from "react";
 import { Card, Col, Row, Table} from "react-bootstrap";
 import {useParams} from "react-router-dom";
 import {useReactToPrint} from 'react-to-print'
-import ModalSendOut from "../modals/ModalSendOut";
+import ModalSendOut from "../DocOut/ModalSendOut";
 import {IoArrowBackOutline} from "react-icons/io5";
 import {IoMdPrint} from "react-icons/io";
 import {MDBBtn} from "mdb-react-ui-kit";

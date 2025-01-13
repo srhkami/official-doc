@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {FaCheckCircle} from "react-icons/fa";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";
+import {toast} from "react-toastify";
 
 export default function ModalReaded({setIsLoading}) {
   // 用來完成批閱
@@ -29,11 +30,11 @@ export default function ModalReaded({setIsLoading}) {
     }).then(res => {
       setIsLoading(false);
       handleModalClose();
-      alert('批閱成功')
+      toast.success('批閱成功')
     }).catch(err => {
       setIsLoading(false);
       console.error(err);
-      alert('處理失敗，請重試');
+      toast.error('處理失敗，請重試');
     })
   }
 

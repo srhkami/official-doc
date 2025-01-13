@@ -1,8 +1,6 @@
-import {Card, Col, Table} from "react-bootstrap";
-import ModalRevoke from "../modals/ModalRevoke";
+import {Table} from "react-bootstrap";
+import ModalRevoke from "./ModalRevoke";
 import PropTypes from "prop-types";
-import ModalCheck from "../modals/ModalCheck";
-import OutHistoryList from "./OutHistoryList";
 import React from "react";
 
 export default function OutManageListPc({data, setIsLoading}) {
@@ -36,8 +34,6 @@ export default function OutManageListPc({data, setIsLoading}) {
       {dataList}
       </tbody>
     </Table>
-
-
   </>
 }
 

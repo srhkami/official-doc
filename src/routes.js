@@ -43,7 +43,7 @@ const routes = createBrowserRouter([
         element: <InManage/>
       },
       {
-        path: 'history',
+        path: 'history/:pageNumber',
         element: <InHistory/>
       },
       {

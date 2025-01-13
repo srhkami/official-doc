@@ -6,13 +6,12 @@ import {IoArrowBackOutline} from "react-icons/io5";
 import {rootIP} from "../../info";
 import {MdOutlineHistory} from "react-icons/md";
 import ModalSelectDate from "../modals/ModalSelectDate";
-import PageTool from "../tools/PageTool";
 import {useParams} from "react-router-dom";
 import InHistoryList from "./InHistoryList";
+import PageBtn from "../tools/PageBtn";
 
 
 export default function InHistory() {
-
 
   const [data, setData] = useState([]);
   const [params, setParams]
@@ -114,7 +113,7 @@ export default function InHistory() {
             </Card.Body>
             <Card.Footer>
               <div className='d-flex justify-content-center align-items-center'>
-                <PageTool path='/out/history/' pageNumber={pageNumber} pageCount={pageCount}/>
+                <PageBtn path='/in/history/' pageNumber={Number(pageNumber)} pageCount={Number(pageCount)} showPages={3}/>
               </div>
             </Card.Footer>
           </Card>

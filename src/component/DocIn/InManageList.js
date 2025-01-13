@@ -1,7 +1,7 @@
 import {Card, Col} from "react-bootstrap";
 import PropTypes from "prop-types";
-import ModalAssign from "../modals/ModalAssign";
-import ModalRemove from "../modals/ModalRemove";
+import ModalAssign from "./ModalAssign";
+import ModalRemove from "./ModalRemove";
 
 export default function InManageList({data, setIsLoading}) {
 

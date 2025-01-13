@@ -7,8 +7,8 @@ import {IoArrowBackOutline} from "react-icons/io5";
 import {rootIP} from "../../info";
 import {MdOutlineHistory} from "react-icons/md";
 import ModalSelectDate from "../modals/ModalSelectDate";
-import PageTool from "../tools/PageTool";
 import {useParams} from "react-router-dom";
+import PageBtn from "../tools/PageBtn";
 
 
 export default function OutHistory() {
@@ -113,7 +113,7 @@ export default function OutHistory() {
             </Card.Body>
             <Card.Footer>
               <div className='d-flex justify-content-center align-items-center'>
-                <PageTool path='/out/history/' pageNumber={pageNumber} pageCount={pageCount}/>
+                <PageBtn path='/out/history/' pageNumber={Number(pageNumber)} pageCount={Number(pageCount)} showPages={3}/>
               </div>
             </Card.Footer>
           </Card>

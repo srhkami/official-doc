@@ -2,14 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import OutManageList from "./OutManageList";
 import {Row, Col, Card, Dropdown, Form} from "react-bootstrap";
-import ModalAddOut from "../modals/ModalAddOut";
-import ModalSendOut from "../modals/ModalSendOut";
+import ModalAddOut from "./ModalAddOut";
+import ModalSendOut from "./ModalSendOut";
 import {MdOutlineHistory} from "react-icons/md";
 import axios from "axios";
 import {rootIP} from "../../info";
-import ModalLoading from "../modals/ModalLoading";
-import ModalNotice from "../modals/ModalNotice";
 import OutManageListPc from "./OutManageListPc";
+import {toast} from "react-toastify";
+import ModalLoading from "../modals/ModalLoading";
 
 export default function OutManage() {
 
@@ -18,17 +18,38 @@ export default function OutManage() {
     = useState({status: 0, ordering: '-group'}); //傳給API的參數
   const [isLoading, setIsLoading] = useState(false); // 是否為載入中的狀態
 
-  useEffect(() => {
-    axios({
-      method: 'GET',
+  const requestData = async () => {
+    const res = await axios({
+      method: 'get',
       url: rootIP + '/doc/out/',
+      withCredentials: true,
       params: params,
     })
-      .then(res => {
-        setData(res.data.results);
+    return res.data
+  }// 從API取得資料，並回傳資料的值
+
+  // 取得所有資料，監聽參數及頁數變化，如有變化全部刷新
+  useEffect(() => {
+    setData([]);
+    requestData()
+      .then((data) => {
+        setData(data.results);
       })
-      .catch(err => console.log(err))
-  }, [params, isLoading]);
+      .catch(err => console.log(err));
+  }, [isLoading, params])
+
+
+  // useEffect(() => {
+  //   axios({
+  //     method: 'GET',
+  //     url: rootIP + '/doc/out/',
+  //     params: params,
+  //   })
+  //     .then(res => {
+  //       setData(res.data.results);
+  //     })
+  //     .catch(err => console.log(err))
+  // }, [params, isLoading]);
 
   const searchStart = (e) => {
     // 關鍵字搜尋
@@ -45,12 +66,11 @@ export default function OutManage() {
 
   return (
     <>
-      <ModalNotice/>
       <ModalLoading show={isLoading} setShow={setIsLoading}/>
       <Row>
         <Col xs='12' className='mb-3 d-flex'>
           <ModalAddOut setIsLoading={setIsLoading}/>
-          <ModalSendOut  setIsLoading={setIsLoading}/>
+          <ModalSendOut setIsLoading={setIsLoading}/>
           <Link to='history/1' className="btn btn-sm btn-secondary ms-3 my-auto d-flex">
             <MdOutlineHistory className='i-12 me-1 my-auto'/>
             查閱送文記錄
@@ -65,7 +85,7 @@ export default function OutManage() {
               </h4>
               <div className="ms-auto d-flex">
                 <Form className='my-auto' onSubmit={searchStart}>
-                  <Form.Control type='text' name='keyword' placeholder='搜尋' size='sm' style={{width:150}}/>
+                  <Form.Control type='text' name='keyword' placeholder='搜尋' size='sm' style={{width: 150}}/>
                 </Form>
                 <Dropdown className='my-auto ms-2'>
                   <Dropdown.Toggle variant='secondary' size='sm'>
@@ -91,7 +111,7 @@ export default function OutManage() {
             <Card.Body>
               <Row className='d-md-none'>
                 <OutManageList data={data} setIsLoading={setIsLoading}/>
-                </Row>
+              </Row>
               <Row className='d-none d-md-block'>
                 <OutManageListPc data={data} setIsLoading={setIsLoading}/>
               </Row>

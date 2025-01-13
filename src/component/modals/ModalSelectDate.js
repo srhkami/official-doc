@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import {getDate} from "../tools/getDate";
 import {IoMdPrint} from "react-icons/io";
 import {useNavigate} from "react-router-dom";
-import ModalAddUser from "./ModalAddUser";
+import ModalAddUser from "../Setting/ModalAddUser";
 
 
 export default function ModalSelectDate({mode='out'}) {

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {MdDeleteForever} from "react-icons/md";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";
+import {toast} from "react-toastify";
 
 export default function ModalRemove({id, setIsLoading}) {
   // 用來刪除收文
@@ -28,11 +29,12 @@ export default function ModalRemove({id, setIsLoading}) {
       withCredentials: true,
     }).then(res => {
       setIsLoading(false);
+      toast.success('刪除成功');
       setModalShow(false);
     }).catch(err => {
       setIsLoading(false);
       console.error(err);
-      alert('處理失敗，請重試');
+      toast.error('處理失敗，請重試');
     })
   }
 

@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import {FaUserPlus} from "react-icons/fa";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";
+import {MdEditSquare} from "react-icons/md";
 
 export default function ModalEditUser({id, setIsLoading}) {
 
@@ -82,7 +83,9 @@ export default function ModalEditUser({id, setIsLoading}) {
 
   return (
     <>
-      <MDBBtn color='secondary' size='sm' outline onClick={handleModalShow}>編輯</MDBBtn>
+      <MDBBtn color='secondary' size='sm' outline onClick={handleModalShow} className='mx-auto d-flex'>
+        <MdEditSquare className='i-12 my-auto'/>
+      </MDBBtn>
       {modalShow &&
         <Modal show={modalShow} onHide={handleModalClose} backdrop="static">
           <Modal.Header closeButton>

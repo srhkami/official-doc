@@ -3,9 +3,9 @@ import {FaUserCog} from "react-icons/fa";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {rootIP} from "../../info";
-import ModalAddUser from "../modals/ModalAddUser";
+import ModalAddUser from "./ModalAddUser";
 import ModalLoading from "../modals/ModalLoading";
-import ModalEditUser from "../modals/ModalEditUser";
+import ModalEditUser from "./ModalEditUser";
 
 export default function SettingUser() {
 

@@ -8,6 +8,7 @@ import {rootIP} from "../../info";
 import { TbCopy,TbCopyCheckFilled  } from "react-icons/tb";
 import AuthContext from "../tools/AuthContext";
 import {useAxios} from "../tools/useAxios";
+import {toast} from "react-toastify";
 
 export default function ModalAssign({id, setIsLoading, username}) {
   // 用來分派承辦人
@@ -49,12 +50,13 @@ export default function ModalAssign({id, setIsLoading, username}) {
     })
       .then(res => {
         setIsLoading(false);
+        toast.success('分派成功')
         setModalShow(false);
       })
       .catch(err => {
         setIsLoading(false);
         console.log(err);
-        alert('處理失敗，請重試');
+        toast.error('處理失敗，請重試');
       })
   }
 
